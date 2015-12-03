@@ -58,6 +58,7 @@ public class Exercise33 {
         return transpose;
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     public static void main(String[] args) {
 
         double[] x = {1, 2, 3};

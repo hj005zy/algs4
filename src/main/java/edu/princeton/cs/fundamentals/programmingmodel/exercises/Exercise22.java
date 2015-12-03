@@ -42,7 +42,7 @@ public class Exercise22 {
         Arrays.sort(whitelist);
 
         // read integer key from standard input; print if not in whitelist
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             int key = StdIn.readInt();
             if (indexOf(whitelist, 0) == -1) {
                 StdOut.println(key);

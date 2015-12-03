@@ -9,8 +9,8 @@ public class Exercise32 {
     public static void histogram(double[] values, int n, double l, double r) {
         int[] counts = new int[n];
 
-        for (int i = 0; i < values.length; i++) {
-            int k = getInterval(values[i], n, l, r);
+        for (double value : values) {
+            int k = getInterval(value, n, l, r);
             if (k >= 0) {
                 counts[k]++;
             }

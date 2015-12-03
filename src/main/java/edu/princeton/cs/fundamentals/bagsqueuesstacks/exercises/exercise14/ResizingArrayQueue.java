@@ -50,6 +50,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
     /**
      * Initializes an empty queue.
      */
+    @SuppressWarnings("unchecked")
     public ResizingArrayQueue() {
         q = (Item[]) new Object[2];
         N = 0;
@@ -76,6 +77,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
     }
 
     // resize the underlying array
+    @SuppressWarnings("unchecked")
     private void resize(int max) {
         assert max >= N;
         Item[] temp = (Item[]) new Object[max];
@@ -180,10 +182,10 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
      * Unit tests the <tt>ResizingArrayQueue</tt> data type.
      */
     public static void main(String[] args) {
-        ResizingArrayQueue<String> q = new ResizingArrayQueue<String>();
-        while (!StdIn.isEmpty()) {
+        ResizingArrayQueue<String> q = new ResizingArrayQueue<>();
+        while (StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-")) {
+            if (!"-".equals(item)) {
                 q.enqueue(item);
             } else if (!q.isEmpty()) {
                 StdOut.print(q.dequeue() + " ");

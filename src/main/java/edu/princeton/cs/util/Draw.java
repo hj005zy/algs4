@@ -59,6 +59,7 @@ import java.util.TreeSet;
  * <p>
  * For additional documentation, see <a href="http://introcs.cs.princeton.edu/31datatype">Section 3.1</a> of
  * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
@@ -149,13 +150,18 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     // default colors
     private static final Color DEFAULT_PEN_COLOR = BLACK;
+
     private static final Color DEFAULT_CLEAR_COLOR = WHITE;
 
     // boundary of drawing canvas, 0% border
     private static final double BORDER = 0.0;
+
     private static final double DEFAULT_XMIN = 0.0;
+
     private static final double DEFAULT_XMAX = 1.0;
+
     private static final double DEFAULT_YMIN = 0.0;
+
     private static final double DEFAULT_YMAX = 1.0;
 
     // default canvas size is SIZE-by-SIZE
@@ -172,6 +178,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     // canvas size
     private int width = DEFAULT_SIZE;
+
     private int height = DEFAULT_SIZE;
 
     // current pen radius
@@ -187,6 +194,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     // for synchronization
     private Object mouseLock = new Object();
+
     private Object keyLock = new Object();
 
     // current font
@@ -196,7 +204,8 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
     private JLabel draw;
 
     // double buffered graphics
-    private BufferedImage offscreenImage, onscreenImage;
+    private BufferedImage offscreenImage;
+
     private Graphics2D offscreen, onscreen;
 
     // the frame for drawing to the screen
@@ -204,18 +213,22 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     // mouse state
     private boolean mousePressed = false;
+
     private double mouseX = 0;
+
     private double mouseY = 0;
 
     // keyboard state
-    private LinkedList<Character> keysTyped = new LinkedList<Character>();
-    private TreeSet<Integer> keysDown = new TreeSet<Integer>();
+    private LinkedList<Character> keysTyped = new LinkedList<>();
+
+    private TreeSet<Integer> keysDown = new TreeSet<>();
 
     // event-based listeners
-    private ArrayList<DrawListener> listeners = new ArrayList<DrawListener>();
+    private ArrayList<DrawListener> listeners = new ArrayList<>();
 
     /**
      * Initializes an empty drawing object with the given name.
+     *
      * @param name the title of the drawing window.
      */
     public Draw(String name) {
@@ -236,7 +249,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
         }
         frame = new JFrame();
         offscreenImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        onscreenImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage onscreenImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         offscreen = offscreenImage.createGraphics();
         onscreen = onscreenImage.createGraphics();
         setXscale();
@@ -275,6 +288,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Sets the upper-left hand corner of the drawing window to be (x, y), where (0, 0) is upper left.
+     *
      * @param x the number of pixels from the left
      * @param y the number of pixels from the top
      * @throws IllegalArgumentException if the width or height is 0 or negative
@@ -288,6 +302,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Sets the window size to w-by-h pixels.
+     *
      * @param w the width as a number of pixels
      * @param h the height as a number of pixels
      * @throws IllegalArgumentException if the width or height is 0 or negative
@@ -334,6 +349,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Sets the x-scale.
+     *
      * @param min the minimum value of the x-scale
      * @param max the maximum value of the x-scale
      */
@@ -345,6 +361,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Sets the y-scale.
+     *
      * @param min the minimum value of the y-scale
      * @param max the maximum value of the y-scale
      */
@@ -388,6 +405,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Clears the screen to the given color.
+     *
      * @param color the color to make the background
      */
     public void clear(Color color) {
@@ -399,6 +417,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Gets the current pen radius.
+     *
      * @return the current pen radius
      */
     public double getPenRadius() {
@@ -414,6 +433,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Sets the radius of the pen to the given size.
+     *
      * @param r the radius of the pen
      * @throws IllegalArgumentException if r is negative
      */
@@ -429,6 +449,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Gets the current pen color.
+     *
      * @return the current pen color
      */
     public Color getPenColor() {
@@ -444,6 +465,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Sets the pen color to the given color.
+     *
      * @param color the color to make the pen
      */
     public void setPenColor(Color color) {
@@ -453,6 +475,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Sets the pen color to the given RGB color.
+     *
      * @param red   the amount of red (between 0 and 255)
      * @param green the amount of green (between 0 and 255)
      * @param blue  the amount of blue (between 0 and 255)
@@ -487,6 +510,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Gets the current <tt>JLabel</tt> for use in some other GUI.
+     *
      * @return the current <tt>JLabel</tt>
      */
     public JLabel getJLabel() {
@@ -495,6 +519,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Gets the current font.
+     *
      * @return the current font
      */
     public Font getFont() {
@@ -510,6 +535,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Sets the font to the given value.
+     *
      * @param font the font
      */
     public void setFont(Font font) {
@@ -522,6 +548,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a line from (x0, y0) to (x1, y1).
+     *
      * @param x0 the x-coordinate of the starting point
      * @param y0 the y-coordinate of the starting point
      * @param x1 the x-coordinate of the destination point
@@ -534,6 +561,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws one pixel at (x, y).
+     *
      * @param x the x-coordinate of the pixel
      * @param y the y-coordinate of the pixel
      */
@@ -543,6 +571,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a point at (x, y).
+     *
      * @param x the x-coordinate of the point
      * @param y the y-coordinate of the point
      */
@@ -563,6 +592,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a circle of radius r, centered on (x, y).
+     *
      * @param x the x-coordinate of the center of the circle
      * @param y the y-coordinate of the center of the circle
      * @param r the radius of the circle
@@ -586,6 +616,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a filled circle of radius r, centered on (x, y).
+     *
      * @param x the x-coordinate of the center of the circle
      * @param y the y-coordinate of the center of the circle
      * @param r the radius of the circle
@@ -609,6 +640,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws an ellipse with given semimajor and semiminor axes, centered on (x, y).
+     *
      * @param x             the x-coordinate of the center of the ellipse
      * @param y             the y-coordinate of the center of the ellipse
      * @param semiMajorAxis is the semimajor axis of the ellipse
@@ -636,6 +668,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws an ellipse with given semimajor and semiminor axes, centered on (x, y).
+     *
      * @param x             the x-coordinate of the center of the ellipse
      * @param y             the y-coordinate of the center of the ellipse
      * @param semiMajorAxis is the semimajor axis of the ellipse
@@ -663,6 +696,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws an arc of radius r, centered on (x, y), from angle1 to angle2 (in degrees).
+     *
      * @param x      the x-coordinate of the center of the circle
      * @param y      the y-coordinate of the center of the circle
      * @param r      the radius of the circle
@@ -692,6 +726,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a square of side length 2r, centered on (x, y).
+     *
      * @param x the x-coordinate of the center of the square
      * @param y the y-coordinate of the center of the square
      * @param r radius is half the length of any side of the square
@@ -715,6 +750,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a filled square of side length 2r, centered on (x, y).
+     *
      * @param x the x-coordinate of the center of the square
      * @param y the y-coordinate of the center of the square
      * @param r radius is half the length of any side of the square
@@ -738,6 +774,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a rectangle of given half width and half height, centered on (x, y).
+     *
      * @param x          the x-coordinate of the center of the rectangle
      * @param y          the y-coordinate of the center of the rectangle
      * @param halfWidth  is half the width of the rectangle
@@ -765,6 +802,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a filled rectangle of given half width and half height, centered on (x, y).
+     *
      * @param x          the x-coordinate of the center of the rectangle
      * @param y          the y-coordinate of the center of the rectangle
      * @param halfWidth  is half the width of the rectangle
@@ -792,6 +830,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a polygon with the given (x[i], y[i]) coordinates.
+     *
      * @param x an array of all the x-coordindates of the polygon
      * @param y an array of all the y-coordindates of the polygon
      */
@@ -809,6 +848,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws a filled polygon with the given (x[i], y[i]) coordinates.
+     *
      * @param x an array of all the x-coordindates of the polygon
      * @param y an array of all the y-coordindates of the polygon
      */
@@ -835,7 +875,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
         ImageIcon icon = new ImageIcon(filename);
 
         // try to read from URL
-        if ((icon == null) || (icon.getImageLoadStatus() != MediaTracker.COMPLETE)) {
+        if (icon.getImageLoadStatus() != MediaTracker.COMPLETE) {
             try {
                 URL url = new URL(filename);
                 icon = new ImageIcon(url);
@@ -845,7 +885,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
         }
 
         // in case file is inside a .jar
-        if ((icon == null) || (icon.getImageLoadStatus() != MediaTracker.COMPLETE)) {
+        if ((icon.getImageLoadStatus() != MediaTracker.COMPLETE)) {
             URL url = Draw.class.getResource(filename);
             if (url == null) {
                 throw new IllegalArgumentException("image " + filename + " not found");
@@ -858,6 +898,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws picture (gif, jpg, or png) centered on (x, y).
+     *
      * @param x the center x-coordinate of the image
      * @param y the center y-coordinate of the image
      * @param s the name of the image/picture, e.g., "ball.gif"
@@ -880,6 +921,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
     /**
      * Draws picture (gif, jpg, or png) centered on (x, y),
      * rotated given number of degrees.
+     *
      * @param x       the center x-coordinate of the image
      * @param y       the center y-coordinate of the image
      * @param s       the name of the image/picture, e.g., "ball.gif"
@@ -905,6 +947,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Draws picture (gif, jpg, or png) centered on (x, y), rescaled to w-by-h.
+     *
      * @param x the center x coordinate of the image
      * @param y the center y coordinate of the image
      * @param s the name of the image/picture, e.g., "ball.gif"
@@ -935,6 +978,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
     /**
      * Draws picture (gif, jpg, or png) centered on (x, y), rotated
      * given number of degrees, rescaled to w-by-h.
+     *
      * @param x       the center x-coordinate of the image
      * @param y       the center y-coordinate of the image
      * @param s       the name of the image/picture, e.g., "ball.gif"
@@ -972,6 +1016,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Writes the given text string in the current font, centered on (x, y).
+     *
      * @param x the center x-coordinate of the text
      * @param y the center y-coordinate of the text
      * @param s the text
@@ -990,6 +1035,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
     /**
      * Writes the given text string in the current font, centered on (x, y) and
      * rotated by the specified number of degrees.
+     *
      * @param x       the center x-coordinate of the text
      * @param y       the center y-coordinate of the text
      * @param s       the text
@@ -1005,6 +1051,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Writes the given text string in the current font, left-aligned at (x, y).
+     *
      * @param x the x-coordinate of the text
      * @param y the y-coordinate of the text
      * @param s the text
@@ -1030,6 +1077,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
      * drawing a huge number of shapes (call <tt>show(0)</tt> to defer drawing
      * on screen, draw the shapes, and call <tt>show(0)</tt> to display them all
      * on screen at once).
+     *
      * @param t number of milliseconds
      */
     public void show(int t) {
@@ -1064,6 +1112,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Saves this drawing to a file.
+     *
      * @param filename the name of the file (with suffix png, jpg, or gif)
      */
     public void save(String filename) {
@@ -1071,7 +1120,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
         String suffix = filename.substring(filename.lastIndexOf('.') + 1);
 
         // png files
-        if (suffix.toLowerCase().equals("png")) {
+        if ("png".equals(suffix.toLowerCase())) {
             try {
                 ImageIO.write(offscreenImage, suffix, file);
             } catch (IOException e) {
@@ -1081,7 +1130,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
         // need to change from ARGB to RGB for jpeg
         // reference: http://archives.java.sun.com/cgi-bin/wa?A2=ind0404&L=java2d-interest&D=0&P=2727
-        else if (suffix.toLowerCase().equals("jpg")) {
+        else if ("jpg".equals(suffix.toLowerCase())) {
             WritableRaster raster = offscreenImage.getRaster();
             WritableRaster newRaster;
             newRaster = raster.createWritableChild(0, 0, width, height, 0, 0, new int[]{0, 1, 2});
@@ -1120,6 +1169,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Adds a {@link DrawListener} to listen to keyboard and mouse events.
+     *
      * @param listener the {\tt DrawListener} argument
      */
     public void addListener(DrawListener listener) {
@@ -1138,6 +1188,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Returns true if the mouse is being pressed.
+     *
      * @return <tt>true</tt> if the mouse is being pressed;
      * <tt>false</tt> otherwise
      */
@@ -1149,6 +1200,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Returns the x-coordinate of the mouse.
+     *
      * @return the x-coordinate of the mouse
      */
     public double mouseX() {
@@ -1159,6 +1211,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Returns the y-coordinate of the mouse.
+     *
      * @return the y-coordinate of the mouse
      */
     public double mouseY() {
@@ -1253,6 +1306,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * Returns true if the user has typed a key.
+     *
      * @return <tt>true</tt> if the user has typed a key; <tt>false</tt> otherwise
      */
     public boolean hasNextKeyTyped() {
@@ -1263,6 +1317,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
     /**
      * The next key typed by the user.
+     *
      * @return the next key typed by the user
      */
     public char nextKeyTyped() {
@@ -1278,6 +1333,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
      * It can handle action keys (such as F1 and arrow keys) and modifier keys
      * (such as shift and control).
      * See {@link KeyEvent} for a description of key codes.
+     *
      * @param keycode the keycode to check
      * @return <tt>true</tt> if <tt>keycode</tt> is currently being pressed;
      * <tt>false</tt> otherwise

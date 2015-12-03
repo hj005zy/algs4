@@ -96,6 +96,7 @@ public class Interval2D {
      * @return a string representation of this two-dimensional interval
      * in the form [xleft, xright] x [yleft, yright]
      */
+    @Override
     public String toString() {
         return x + " x " + y;
     }
@@ -106,6 +107,7 @@ public class Interval2D {
      * @param other the other interval
      * @return true if this interval equals the other interval; false otherwise
      */
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -125,6 +127,7 @@ public class Interval2D {
      *
      * @return an integer hash code for this interval
      */
+    @Override
     public int hashCode() {
         int hash1 = x.hashCode();
         int hash2 = y.hashCode();

@@ -37,7 +37,7 @@ public class Exercise08 {
         Arrays.sort(whitelist);
 
         // read integer key from standard input; print if not in whitelist
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             int key = StdIn.readInt();
             Counter counter = new Counter("BinarySearch");
             indexOf(whitelist, key, counter);

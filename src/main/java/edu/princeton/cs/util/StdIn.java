@@ -16,42 +16,44 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
- *  The <tt>StdIn</tt> class provides static methods for reading strings
- *  and numbers from standard input. See 
- *  <a href="http://introcs.cs.princeton.edu/15inout">Section 1.5</a> of
- *  <i>Introduction to Programming in Java: An Interdisciplinary Approach</i>
- *  by Robert Sedgewick and Kevin Wayne.
- *  <p>
- *  For uniformity across platforms, this class uses <tt>Locale.US</tt>
- *  for the locale and <tt>"UTF-8"</tt> for the character-set encoding.
- *  The English language locale is consistent with the formatting conventions
- *  for Java floating-point literals, command-line arguments
- *  (via {@link Double#parseDouble(String)}) and standard output.
- *  <p>
- *  Like {@link Scanner}, reading a <em>token</em> also consumes preceding Java
- *  whitespace; reading a line consumes the following end-of-line
- *  delimeter; reading a character consumes nothing extra. 
- *  <p>
- *  Whitespace is defined in {@link Character#isWhitespace(char)}. Newlines
- *  consist of \n, \r, \r\n, and Unicode hex code points 0x2028, 0x2029, 0x0085;
- *  see <tt><a href="http://www.docjar.com/html/api/java/util/Scanner.java.html">
- *  Scanner.java</a></tt> (NB: Java 6u23 and earlier uses only \r, \r, \r\n).
- *  <p>
- *  See {@link In} for a version that handles input from files, URLs,
- *  and sockets.
- *  <p>
- *  Note that Java's UTF-8 encoding does not recognize the optional byte-order
- *  mask. If the input begins with the optional byte-order mask, <tt>StdIn</tt>
- *  will have an extra character <tt>uFEFF</tt> at the beginning.
- *  For details, see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4508058.
+ * The <tt>StdIn</tt> class provides static methods for reading strings
+ * and numbers from standard input. See
+ * <a href="http://introcs.cs.princeton.edu/15inout">Section 1.5</a> of
+ * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i>
+ * by Robert Sedgewick and Kevin Wayne.
+ * <p>
+ * For uniformity across platforms, this class uses <tt>Locale.US</tt>
+ * for the locale and <tt>"UTF-8"</tt> for the character-set encoding.
+ * The English language locale is consistent with the formatting conventions
+ * for Java floating-point literals, command-line arguments
+ * (via {@link Double#parseDouble(String)}) and standard output.
+ * <p>
+ * Like {@link Scanner}, reading a <em>token</em> also consumes preceding Java
+ * whitespace; reading a line consumes the following end-of-line
+ * delimeter; reading a character consumes nothing extra.
+ * <p>
+ * Whitespace is defined in {@link Character#isWhitespace(char)}. Newlines
+ * consist of \n, \r, \r\n, and Unicode hex code points 0x2028, 0x2029, 0x0085;
+ * see <tt><a href="http://www.docjar.com/html/api/java/util/Scanner.java.html">
+ * Scanner.java</a></tt> (NB: Java 6u23 and earlier uses only \r, \r, \r\n).
+ * <p>
+ * See {@link In} for a version that handles input from files, URLs,
+ * and sockets.
+ * <p>
+ * Note that Java's UTF-8 encoding does not recognize the optional byte-order
+ * mask. If the input begins with the optional byte-order mask, <tt>StdIn</tt>
+ * will have an extra character <tt>uFEFF</tt> at the beginning.
+ * For details, see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4508058.
  *
- *  @author David Pritchard
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
+ * @author David Pritchard
+ * @author Robert Sedgewick
+ * @author Kevin Wayne
  */
 public final class StdIn {
 
-    /*** begin: section (1 of 2) of code duplicated from In to StdIn. */
+    /***
+     * begin: section (1 of 2) of code duplicated from In to StdIn.
+     */
 
     // assume Unicode UTF-8 encoding
     private static final String CHARSET_NAME = "UTF-8";
@@ -69,7 +71,9 @@ public final class StdIn {
     // used to read the entire input
     private static final Pattern EVERYTHING_PATTERN = Pattern.compile("\\A");
 
-    /*** end: section (1 of 2) of code duplicated from In to StdIn. */
+    /***
+     * end: section (1 of 2) of code duplicated from In to StdIn.
+     */
 
     private static Scanner scanner;
 
@@ -82,11 +86,11 @@ public final class StdIn {
 
     /**
      * Returns true if standard input is empty (except possibly for whitespace).
-     * Use this method to know whether the next call to {@link #readString()}, 
+     * Use this method to know whether the next call to {@link #readString()},
      * {@link #readDouble()}, etc will succeed.
      *
      * @return <tt>true</tt> if standard input is empty (except possibly
-     *         for whitespace); <tt>false</tt> otherwise
+     * for whitespace); <tt>false</tt> otherwise
      */
     public static boolean isEmpty() {
         return !scanner.hasNext();
@@ -121,6 +125,7 @@ public final class StdIn {
 
     /**
      * Reads and returns the next line, excluding the line separator if present.
+     *
      * @return the next line, excluding the line separator if present
      */
     public static String readLine() {
@@ -135,6 +140,7 @@ public final class StdIn {
 
     /**
      * Reads and returns the next character.
+     *
      * @return the next character
      */
     public static char readChar() {
@@ -148,6 +154,7 @@ public final class StdIn {
 
     /**
      * Reads and returns the remainder of the input, as a string.
+     *
      * @return the remainder of the input, as a string
      */
     public static String readAll() {
@@ -163,6 +170,7 @@ public final class StdIn {
 
     /**
      * Reads the next token  and returns the <tt>String</tt>.
+     *
      * @return the next <tt>String</tt>
      */
     public static String readString() {
@@ -171,6 +179,7 @@ public final class StdIn {
 
     /**
      * Reads the next token from standard input, parses it as an integer, and returns the integer.
+     *
      * @return the next integer on standard input
      * @throws InputMismatchException if the next token cannot be parsed as an <tt>int</tt>
      */
@@ -180,6 +189,7 @@ public final class StdIn {
 
     /**
      * Reads the next token from standard input, parses it as a double, and returns the double.
+     *
      * @return the next double on standard input
      * @throws InputMismatchException if the next token cannot be parsed as a <tt>double</tt>
      */
@@ -189,6 +199,7 @@ public final class StdIn {
 
     /**
      * Reads the next token from standard input, parses it as a float, and returns the float.
+     *
      * @return the next float on standard input
      * @throws InputMismatchException if the next token cannot be parsed as a <tt>float</tt>
      */
@@ -198,6 +209,7 @@ public final class StdIn {
 
     /**
      * Reads the next token from standard input, parses it as a long integer, and returns the long integer.
+     *
      * @return the next long integer on standard input
      * @throws InputMismatchException if the next token cannot be parsed as a <tt>long</tt>
      */
@@ -207,6 +219,7 @@ public final class StdIn {
 
     /**
      * Reads the next token from standard input, parses it as a short integer, and returns the short integer.
+     *
      * @return the next short integer on standard input
      * @throws InputMismatchException if the next token cannot be parsed as a <tt>short</tt>
      */
@@ -216,6 +229,7 @@ public final class StdIn {
 
     /**
      * Reads the next token from standard input, parses it as a byte, and returns the byte.
+     *
      * @return the next byte on standard input
      * @throws InputMismatchException if the next token cannot be parsed as a <tt>byte</tt>
      */
@@ -226,23 +240,24 @@ public final class StdIn {
     /**
      * Reads the next token from standard input, parses it as a boolean,
      * and returns the boolean.
+     *
      * @return the next boolean on standard input
      * @throws InputMismatchException if the next token cannot be parsed as a <tt>boolean</tt>:
-     *    <tt>true</tt> or <tt>1</tt> for true, and <tt>false</tt> or <tt>0</tt> for false,
-     *    ignoring case
+     *                                <tt>true</tt> or <tt>1</tt> for true, and <tt>false</tt> or <tt>0</tt> for false,
+     *                                ignoring case
      */
     public static boolean readBoolean() {
         String s = readString();
-        if (s.equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(s)) {
             return true;
         }
-        if (s.equalsIgnoreCase("false")) {
+        if ("false".equalsIgnoreCase(s)) {
             return false;
         }
-        if (s.equals("1")) {
+        if ("1".equals(s)) {
             return true;
         }
-        if (s.equals("0")) {
+        if ("0".equals(s)) {
             return false;
         }
         throw new InputMismatchException();
@@ -250,39 +265,40 @@ public final class StdIn {
 
     /**
      * Reads all remaining tokens from standard input and returns them as an array of strings.
+     *
      * @return all remaining tokens on standard input, as an array of strings
      */
     public static String[] readAllStrings() {
         // we could use readAll.trim().split(), but that's not consistent
         // because trim() uses characters 0x00..0x20 as whitespace
         String[] tokens = WHITESPACE_PATTERN.split(readAll());
-        if (tokens.length == 0 || tokens[0].length() > 0) {
+        if (tokens.length == 0 || !tokens[0].isEmpty()) {
             return tokens;
         }
 
         // don't include first token if it is leading whitespace
         String[] decapitokens = new String[tokens.length - 1];
-        for (int i = 0; i < tokens.length - 1; i++) {
-            decapitokens[i] = tokens[i + 1];
-        }
+        System.arraycopy(tokens, 1, decapitokens, 0, tokens.length - 1);
         return decapitokens;
     }
 
     /**
      * Reads all remaining lines from standard input and returns them as an array of strings.
+     *
      * @return all remaining lines on standard input, as an array of strings
      */
     public static String[] readAllLines() {
-        ArrayList<String> lines = new ArrayList<String>();
+        ArrayList<String> lines = new ArrayList<>();
         while (hasNextLine()) {
             lines.add(readLine());
         }
-        return lines.toArray(new String[0]);
+        return lines.toArray(new String[lines.size()]);
     }
 
     /**
      * Reads all remaining tokens from standard input, parses them as integers, and returns
      * them as an array of integers.
+     *
      * @return all remaining integers on standard input, as an array
      * @throws InputMismatchException if any token cannot be parsed as an <tt>int</tt>
      */
@@ -298,6 +314,7 @@ public final class StdIn {
     /**
      * Reads all remaining tokens from standard input, parses them as doubles, and returns
      * them as an array of doubles.
+     *
      * @return all remaining doubles on standard input, as an array
      * @throws InputMismatchException if any token cannot be parsed as a <tt>double</tt>
      */
@@ -332,6 +349,7 @@ public final class StdIn {
     /**
      * Reads all remaining tokens, parses them as integers, and returns
      * them as an array of integers.
+     *
      * @return all remaining integers, as an array
      * @throws InputMismatchException if any token cannot be parsed as an <tt>int</tt>
      * @deprecated Replaced by {@link #readAllInts()}.
@@ -343,6 +361,7 @@ public final class StdIn {
     /**
      * Reads all remaining tokens, parses them as doubles, and returns
      * them as an array of doubles.
+     *
      * @return all remaining doubles, as an array
      * @throws InputMismatchException if any token cannot be parsed as a <tt>double</tt>
      * @deprecated Replaced by {@link #readAllDoubles()}.
@@ -353,6 +372,7 @@ public final class StdIn {
 
     /**
      * Reads all remaining tokens and returns them as an array of strings.
+     *
      * @return all remaining tokens, as an array of strings
      * @deprecated Replaced by {@link #readAllStrings()}.
      */
@@ -390,25 +410,25 @@ public final class StdIn {
 }
 
 /******************************************************************************
- *  Copyright 2002-2015, Robert Sedgewick and Kevin Wayne.
+ * Copyright 2002-2015, Robert Sedgewick and Kevin Wayne.
  *
- *  This file is part of algs4.jar, which accompanies the textbook
+ * This file is part of algs4.jar, which accompanies the textbook
  *
- *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
- *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
- *      http://algs4.cs.princeton.edu
+ * Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
+ * Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
+ * http://algs4.cs.princeton.edu
  *
  *
- *  algs4.jar is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * algs4.jar is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  algs4.jar is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * algs4.jar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
+ * You should have received a copy of the GNU General Public License
+ * along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

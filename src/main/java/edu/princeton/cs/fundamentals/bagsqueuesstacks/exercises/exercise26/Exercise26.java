@@ -9,7 +9,7 @@ public class Exercise26 {
 
     public static <Item> Node<Item> remove(Node<Item> list, Item key) {
         if (list == null) {
-            return list;
+            return null;
         }
 
         Node<Item> head = list;

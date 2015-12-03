@@ -136,10 +136,11 @@ public class LinkedQueue<Item> implements Iterable<Item> {
      *
      * @return the sequence of items in FIFO order, separated by spaces
      */
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (Item item : this) {
-            s.append(item + " ");
+            s.append(item).append(" ");
         }
         return s.toString();
     }
@@ -240,10 +241,10 @@ public class LinkedQueue<Item> implements Iterable<Item> {
      * Unit tests the <tt>LinkedQueue</tt> data type.
      */
     public static void main(String[] args) {
-        LinkedQueue<String> q = new LinkedQueue<String>();
-        while (!StdIn.isEmpty()) {
+        LinkedQueue<String> q = new LinkedQueue<>();
+        while (StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-")) {
+            if (!"-".equals(item)) {
                 q.enqueue(item);
             } else if (!q.isEmpty()) {
                 StdOut.print(q.dequeue() + " ");

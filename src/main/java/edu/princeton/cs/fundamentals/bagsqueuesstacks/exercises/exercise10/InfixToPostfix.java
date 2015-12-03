@@ -29,18 +29,24 @@ public class InfixToPostfix {
 
     public static void main(String[] args) {
         Stack<String> stack = new Stack<>();
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             String s = StdIn.readString();
-            if (s.equals("+")) {
-                stack.push(s);
-            } else if (s.equals("*")) {
-                stack.push(s);
-            } else if (s.equals(")")) {
-                StdOut.print(stack.pop() + " ");
-            } else if (s.equals("(")) {
-                StdOut.print("");
-            } else {
-                StdOut.print(s + " ");
+            switch (s) {
+                case "+":
+                    stack.push(s);
+                    break;
+                case "*":
+                    stack.push(s);
+                    break;
+                case ")":
+                    StdOut.print(stack.pop() + " ");
+                    break;
+                case "(":
+                    StdOut.print("");
+                    break;
+                default:
+                    StdOut.print(s + " ");
+                    break;
             }
         }
         StdOut.println();

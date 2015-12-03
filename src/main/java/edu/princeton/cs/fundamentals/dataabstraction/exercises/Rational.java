@@ -75,6 +75,7 @@ public class Rational implements Comparable<Rational> {
     }
 
     // return string representation of this rational number
+    @Override
     public String toString() {
         if (den == 1) {
             return num + "";
@@ -98,6 +99,7 @@ public class Rational implements Comparable<Rational> {
     }
 
     // is this Rational object equal to other?
+    @Override
     public boolean equals(Object other) {
         if (other == null) {
             return false;
@@ -110,6 +112,7 @@ public class Rational implements Comparable<Rational> {
     }
 
     // hashCode consistent with equals() and compareTo()
+    @Override
     public int hashCode() {
         return this.toString().hashCode();
     }

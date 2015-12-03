@@ -26,6 +26,7 @@ import edu.princeton.cs.util.StdOut;
  * <p>
  * For additional documentation, see <a href="http://algs4.cs.princeton.edu/11model">Section 1.1</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
@@ -44,7 +45,7 @@ public class Average {
         double sum = 0.0;    // sum of input values
 
         // read data and compute statistics
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             double value = StdIn.readDouble();
             sum += value;
             count++;

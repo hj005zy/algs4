@@ -35,10 +35,7 @@ public class ParenthesesCompletion {
                     String operand2 = operands.pop();
                     char operator = operators.pop();
 
-                    StringBuilder operandsBuilder = new StringBuilder(5);
-                    operandsBuilder.append("(").append(operand2).append(operator).append(operand1).append(")");
-
-                    operands.push(operandsBuilder.toString());
+                    operands.push("(" + operand2 + operator + operand1 + ")");
                     break;
                 case ' ':
                 default:

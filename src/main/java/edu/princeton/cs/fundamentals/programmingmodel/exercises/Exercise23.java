@@ -35,7 +35,7 @@ public class Exercise23 {
         Arrays.sort(whitelist);
 
         String operation = args[1];
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             int key = StdIn.readInt();
             int index = indexOf(whitelist, key);
             if (index != -1 && "-".equals(operation)) {

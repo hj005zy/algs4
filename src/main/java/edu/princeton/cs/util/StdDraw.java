@@ -50,81 +50,81 @@ import java.util.LinkedList;
 import java.util.TreeSet;
 
 /**
- *  <i>Standard draw</i>. This class provides a basic capability for
- *  creating drawings with your programs. It uses a simple graphics model that
- *  allows you to create drawings consisting of points, lines, and curves
- *  in a window on your computer and to save the drawings to a file.
- *  <p>
- *  For additional documentation, see <a href="http://introcs.cs.princeton.edu/15inout">Section 1.5</a> of
- *  <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
+ * <i>Standard draw</i>. This class provides a basic capability for
+ * creating drawings with your programs. It uses a simple graphics model that
+ * allows you to create drawings consisting of points, lines, and curves
+ * in a window on your computer and to save the drawings to a file.
+ * <p>
+ * For additional documentation, see <a href="http://introcs.cs.princeton.edu/15inout">Section 1.5</a> of
+ * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
  *
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
+ * @author Robert Sedgewick
+ * @author Kevin Wayne
  */
 public final class StdDraw implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
 
     /**
-     *  The color black.
+     * The color black.
      */
     public static final Color BLACK = Color.BLACK;
 
     /**
-     *  The color blue.
+     * The color blue.
      */
     public static final Color BLUE = Color.BLUE;
 
     /**
-     *  The color cyan.
+     * The color cyan.
      */
     public static final Color CYAN = Color.CYAN;
 
     /**
-     *  The color dark gray.
+     * The color dark gray.
      */
     public static final Color DARK_GRAY = Color.DARK_GRAY;
 
     /**
-     *  The color gray.
+     * The color gray.
      */
     public static final Color GRAY = Color.GRAY;
 
     /**
-     *  The color green.
+     * The color green.
      */
     public static final Color GREEN = Color.GREEN;
 
     /**
-     *  The color light gray.
+     * The color light gray.
      */
     public static final Color LIGHT_GRAY = Color.LIGHT_GRAY;
 
     /**
-     *  The color magenta.
+     * The color magenta.
      */
     public static final Color MAGENTA = Color.MAGENTA;
 
     /**
-     *  The color orange.
+     * The color orange.
      */
     public static final Color ORANGE = Color.ORANGE;
 
     /**
-     *  The color pink.
+     * The color pink.
      */
     public static final Color PINK = Color.PINK;
 
     /**
-     *  The color red.
+     * The color red.
      */
     public static final Color RED = Color.RED;
 
     /**
-     *  The color white.
+     * The color white.
      */
     public static final Color WHITE = Color.WHITE;
 
     /**
-     *  The color yellow.
+     * The color yellow.
      */
     public static final Color YELLOW = Color.YELLOW;
 
@@ -148,6 +148,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     // default colors
     private static final Color DEFAULT_PEN_COLOR = BLACK;
+
     private static final Color DEFAULT_CLEAR_COLOR = WHITE;
 
     // current pen color
@@ -155,7 +156,9 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     // default canvas size is DEFAULT_SIZE-by-DEFAULT_SIZE
     private static final int DEFAULT_SIZE = 512;
+
     private static int width = DEFAULT_SIZE;
+
     private static int height = DEFAULT_SIZE;
 
     // default pen radius
@@ -170,14 +173,20 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     // boundary of drawing canvas, 0% border
     // private static final double BORDER = 0.05;
     private static final double BORDER = 0.00;
+
     private static final double DEFAULT_XMIN = 0.0;
+
     private static final double DEFAULT_XMAX = 1.0;
+
     private static final double DEFAULT_YMIN = 0.0;
+
     private static final double DEFAULT_YMAX = 1.0;
+
     private static double xmin, ymin, xmax, ymax;
 
     // for synchronization
     private static Object mouseLock = new Object();
+
     private static Object keyLock = new Object();
 
     // default font
@@ -188,6 +197,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     // double buffered graphics
     private static BufferedImage offscreenImage, onscreenImage;
+
     private static Graphics2D offscreen, onscreen;
 
     // singleton for callbacks: avoids generation of extra .class files
@@ -198,14 +208,16 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     // mouse state
     private static boolean mousePressed = false;
+
     private static double mouseX = 0;
+
     private static double mouseY = 0;
 
     // queue of typed key characters
-    private static LinkedList<Character> keysTyped = new LinkedList<Character>();
+    private static LinkedList<Character> keysTyped = new LinkedList<>();
 
     // set of key codes currently pressed down
-    private static TreeSet<Integer> keysDown = new TreeSet<Integer>();
+    private static TreeSet<Integer> keysDown = new TreeSet<>();
 
     // time in milliseconds (from currentTimeMillis()) when we can draw again
     // used to control the frame rate
@@ -232,8 +244,8 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
      * Sets the window size to <tt>w</tt>-by-<tt>h</tt> pixels.
      * This method must be called before any other commands.
      *
-     * @param  w the width as a number of pixels
-     * @param  h the height as a number of pixels
+     * @param w the width as a number of pixels
+     * @param h the height as a number of pixels
      * @throws IllegalArgumentException if the width or height is 0 or negative
      */
     public static void setCanvasSize(int w, int h) {
@@ -280,7 +292,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         frame.setContentPane(draw);
         frame.addKeyListener(std);    // JLabel cannot get keyboard focus
         frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);            // closes all windows
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);            // closes all windows
         // frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // closes only current window
         frame.setTitle("Standard Draw");
         frame.setJMenuBar(createMenuBar());
@@ -434,7 +446,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
      * pen radius to <tt>r</tt> and draw a point, you get a circle of radius <tt>r</tt>.
      * The pen radius is not affected by coordinate scaling.
      *
-     * @param  r the radius of the pen
+     * @param r the radius of the pen
      * @throws IllegalArgumentException if <tt>r</tt> is negative
      */
     public static void setPenRadius(double r) {
@@ -472,7 +484,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
      * <tt>StdDraw.DARK_GRAY</tt>, <tt>StdDraw.GRAY</tt>, <tt>StdDraw.GREEN</tt>,
      * <tt>StdDraw.LIGHT_GRAY</tt>, <tt>StdDraw.MAGENTA</tt>, <tt>StdDraw.ORANGE</tt>,
      * <tt>StdDraw.PINK</tt>, <tt>StdDraw.RED</tt>, <tt>StdDraw.WHITE</tt>, and
-     *<tt>StdDraw.YELLOW</tt>.
+     * <tt>StdDraw.YELLOW</tt>.
      *
      * @param color the Color to make the pen
      */
@@ -484,9 +496,9 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     /**
      * Sets the pen color to the specified RGB color.
      *
-     * @param  red the amount of red (between 0 and 255)
-     * @param  green the amount of green (between 0 and 255)
-     * @param  blue the amount of blue (between 0 and 255)
+     * @param red   the amount of red (between 0 and 255)
+     * @param green the amount of green (between 0 and 255)
+     * @param blue  the amount of blue (between 0 and 255)
      * @throws IllegalArgumentException if the amount of red, green, or blue are outside prescribed range
      */
     public static void setPenColor(int red, int green, int blue) {
@@ -533,6 +545,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw a line from (x0, y0) to (x1, y1).
+     *
      * @param x0 the x-coordinate of the starting point
      * @param y0 the y-coordinate of the starting point
      * @param x1 the x-coordinate of the destination point
@@ -545,6 +558,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw one pixel at (x, y).
+     *
      * @param x the x-coordinate of the pixel
      * @param y the y-coordinate of the pixel
      */
@@ -554,6 +568,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw a point at (x, y).
+     *
      * @param x the x-coordinate of the point
      * @param y the y-coordinate of the point
      */
@@ -577,6 +592,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw a circle of radius r, centered on (x, y).
+     *
      * @param x the x-coordinate of the center of the circle
      * @param y the y-coordinate of the center of the circle
      * @param r the radius of the circle
@@ -600,6 +616,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw filled circle of radius r, centered on (x, y).
+     *
      * @param x the x-coordinate of the center of the circle
      * @param y the y-coordinate of the center of the circle
      * @param r the radius of the circle
@@ -623,8 +640,9 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw an ellipse with given semimajor and semiminor axes, centered on (x, y).
-     * @param x the x-coordinate of the center of the ellipse
-     * @param y the y-coordinate of the center of the ellipse
+     *
+     * @param x             the x-coordinate of the center of the ellipse
+     * @param y             the y-coordinate of the center of the ellipse
      * @param semiMajorAxis is the semimajor axis of the ellipse
      * @param semiMinorAxis is the semiminor axis of the ellipse
      * @throws IllegalArgumentException if either of the axes are negative
@@ -650,8 +668,9 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw an ellipse with given semimajor and semiminor axes, centered on (x, y).
-     * @param x the x-coordinate of the center of the ellipse
-     * @param y the y-coordinate of the center of the ellipse
+     *
+     * @param x             the x-coordinate of the center of the ellipse
+     * @param y             the y-coordinate of the center of the ellipse
      * @param semiMajorAxis is the semimajor axis of the ellipse
      * @param semiMinorAxis is the semiminor axis of the ellipse
      * @throws IllegalArgumentException if either of the axes are negative
@@ -677,12 +696,13 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw an arc of radius r, centered on (x, y), from angle1 to angle2 (in degrees).
-     * @param x the x-coordinate of the center of the circle
-     * @param y the y-coordinate of the center of the circle
-     * @param r the radius of the circle
+     *
+     * @param x      the x-coordinate of the center of the circle
+     * @param y      the y-coordinate of the center of the circle
+     * @param r      the radius of the circle
      * @param angle1 the starting angle. 0 would mean an arc beginning at 3 o'clock.
      * @param angle2 the angle at the end of the arc. For example, if
-     *        you want a 90 degree arc, then angle2 should be angle1 + 90.
+     *               you want a 90 degree arc, then angle2 should be angle1 + 90.
      * @throws IllegalArgumentException if the radius of the circle is negative
      */
     public static void arc(double x, double y, double r, double angle1, double angle2) {
@@ -706,6 +726,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw a square of side length 2r, centered on (x, y).
+     *
      * @param x the x-coordinate of the center of the square
      * @param y the y-coordinate of the center of the square
      * @param r radius is half the length of any side of the square
@@ -729,6 +750,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw a filled square of side length 2r, centered on (x, y).
+     *
      * @param x the x-coordinate of the center of the square
      * @param y the y-coordinate of the center of the square
      * @param r radius is half the length of any side of the square
@@ -752,9 +774,10 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw a rectangle of given half width and half height, centered on (x, y).
-     * @param x the x-coordinate of the center of the rectangle
-     * @param y the y-coordinate of the center of the rectangle
-     * @param halfWidth is half the width of the rectangle
+     *
+     * @param x          the x-coordinate of the center of the rectangle
+     * @param y          the y-coordinate of the center of the rectangle
+     * @param halfWidth  is half the width of the rectangle
      * @param halfHeight is half the height of the rectangle
      * @throws IllegalArgumentException if halfWidth or halfHeight is negative
      */
@@ -779,9 +802,10 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw a filled rectangle of given half width and half height, centered on (x, y).
-     * @param x the x-coordinate of the center of the rectangle
-     * @param y the y-coordinate of the center of the rectangle
-     * @param halfWidth is half the width of the rectangle
+     *
+     * @param x          the x-coordinate of the center of the rectangle
+     * @param y          the y-coordinate of the center of the rectangle
+     * @param halfWidth  is half the width of the rectangle
      * @param halfHeight is half the height of the rectangle
      * @throws IllegalArgumentException if halfWidth or halfHeight is negative
      */
@@ -806,6 +830,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw a polygon with the given (x[i], y[i]) coordinates.
+     *
      * @param x an array of all the x-coordinates of the polygon
      * @param y an array of all the y-coordinates of the polygon
      */
@@ -823,6 +848,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw a filled polygon with the given (x[i], y[i]) coordinates.
+     *
      * @param x an array of all the x-coordinates of the polygon
      * @param y an array of all the y-coordinates of the polygon
      */
@@ -839,7 +865,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     }
 
     /***************************************************************************
-     *  Drawing images.
+     * Drawing images.
      ***************************************************************************/
 
     // get an image from the given filename
@@ -849,7 +875,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         ImageIcon icon = new ImageIcon(filename);
 
         // try to read from URL
-        if ((icon == null) || (icon.getImageLoadStatus() != MediaTracker.COMPLETE)) {
+        if ((icon.getImageLoadStatus() != MediaTracker.COMPLETE)) {
             try {
                 URL url = new URL(filename);
                 icon = new ImageIcon(url);
@@ -859,7 +885,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         }
 
         // in case file is inside a .jar (classpath relative to StdDraw)
-        if ((icon == null) || (icon.getImageLoadStatus() != MediaTracker.COMPLETE)) {
+        if ((icon.getImageLoadStatus() != MediaTracker.COMPLETE)) {
             URL url = StdDraw.class.getResource(filename);
             if (url != null) {
                 icon = new ImageIcon(url);
@@ -867,7 +893,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         }
 
         // in case file is inside a .jar (classpath relative to root of jar)
-        if ((icon == null) || (icon.getImageLoadStatus() != MediaTracker.COMPLETE)) {
+        if ((icon.getImageLoadStatus() != MediaTracker.COMPLETE)) {
             URL url = StdDraw.class.getResource("/" + filename);
             if (url == null) {
                 throw new IllegalArgumentException("image " + filename + " not found");
@@ -880,6 +906,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw picture (gif, jpg, or png) centered on (x, y).
+     *
      * @param x the center x-coordinate of the image
      * @param y the center y-coordinate of the image
      * @param s the name of the image/picture, e.g., "ball.gif"
@@ -902,9 +929,10 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     /**
      * Draw picture (gif, jpg, or png) centered on (x, y),
      * rotated given number of degrees.
-     * @param x the center x-coordinate of the image
-     * @param y the center y-coordinate of the image
-     * @param s the name of the image/picture, e.g., "ball.gif"
+     *
+     * @param x       the center x-coordinate of the image
+     * @param y       the center y-coordinate of the image
+     * @param s       the name of the image/picture, e.g., "ball.gif"
      * @param degrees is the number of degrees to rotate counterclockwise
      * @throws IllegalArgumentException if the image is corrupt
      */
@@ -927,6 +955,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draw picture (gif, jpg, or png) centered on (x, y), rescaled to w-by-h.
+     *
      * @param x the center x coordinate of the image
      * @param y the center y coordinate of the image
      * @param s the name of the image/picture, e.g., "ball.gif"
@@ -964,11 +993,12 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     /**
      * Draw picture (gif, jpg, or png) centered on (x, y), rotated
      * given number of degrees, rescaled to w-by-h.
-     * @param x the center x-coordinate of the image
-     * @param y the center y-coordinate of the image
-     * @param s the name of the image/picture, e.g., "ball.gif"
-     * @param w the width of the image
-     * @param h the height of the image
+     *
+     * @param x       the center x-coordinate of the image
+     * @param y       the center y-coordinate of the image
+     * @param s       the name of the image/picture, e.g., "ball.gif"
+     * @param w       the width of the image
+     * @param h       the height of the image
      * @param degrees is the number of degrees to rotate counterclockwise
      * @throws IllegalArgumentException if the image is corrupt
      */
@@ -1001,6 +1031,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Write the given text string in the current font, centered on (x, y).
+     *
      * @param x the center x-coordinate of the text
      * @param y the center y-coordinate of the text
      * @param s the text
@@ -1019,9 +1050,10 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     /**
      * Write the given text string in the current font, centered on (x, y) and
      * rotated by the specified number of degrees.
-     * @param x the center x-coordinate of the text
-     * @param y the center y-coordinate of the text
-     * @param s the text
+     *
+     * @param x       the center x-coordinate of the text
+     * @param y       the center y-coordinate of the text
+     * @param s       the text
      * @param degrees is the number of degrees to rotate counterclockwise
      */
     public static void text(double x, double y, String s, double degrees) {
@@ -1034,6 +1066,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Write the given text string in the current font, left-aligned at (x, y).
+     *
      * @param x the x-coordinate of the text
      * @param y the y-coordinate of the text
      * @param s the text
@@ -1050,6 +1083,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Write the given text string in the current font, right-aligned at (x, y).
+     *
      * @param x the x-coordinate of the text
      * @param y the y-coordinate of the text
      * @param s the text
@@ -1075,6 +1109,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
      * drawing a huge number of shapes (call <tt>show(0)</tt> to defer drawing
      * on screen, draw the shapes, and call <tt>show(0)</tt> to display them all
      * on screen at once).
+     *
      * @param t number of milliseconds
      */
     public static void show(int t) {
@@ -1124,6 +1159,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Save onscreen image to file - suffix must be png, jpg, or gif.
+     *
      * @param filename the name of the file with one of the required suffixes
      */
     public static void save(String filename) {
@@ -1131,7 +1167,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         String suffix = filename.substring(filename.lastIndexOf('.') + 1);
 
         // png files
-        if (suffix.toLowerCase().equals("png")) {
+        if ("png".equals(suffix.toLowerCase())) {
             try {
                 ImageIO.write(onscreenImage, suffix, file);
             } catch (IOException e) {
@@ -1141,7 +1177,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
         // need to change from ARGB to RGB for jpeg
         // reference: http://archives.java.sun.com/cgi-bin/wa?A2=ind0404&L=java2d-interest&D=0&P=2727
-        else if (suffix.toLowerCase().equals("jpg")) {
+        else if ("jpg".equals(suffix.toLowerCase())) {
             WritableRaster raster = onscreenImage.getRaster();
             WritableRaster newRaster;
             newRaster = raster.createWritableChild(0, 0, width, height, 0, 0, new int[]{0, 1, 2});
@@ -1311,13 +1347,13 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
      * Returns true if the given key is being pressed.
      * <p>
      * This method takes the keycode (corresponding to a physical key)
-     *  as an argument. It can handle action keys
+     * as an argument. It can handle action keys
      * (such as F1 and arrow keys) and modifier keys (such as shift and control).
      * See {@link KeyEvent} for a description of key codes.
      *
-     * @param  keycode the key to check if it is being pressed
+     * @param keycode the key to check if it is being pressed
      * @return <tt>true</tt> if <tt>keycode</tt> is currently being pressed;
-     *         <tt>false</tt> otherwise
+     * <tt>false</tt> otherwise
      */
     public static boolean isKeyPressed(int keycode) {
         synchronized (keyLock) {
@@ -1383,25 +1419,25 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 }
 
 /******************************************************************************
- *  Copyright 2002-2015, Robert Sedgewick and Kevin Wayne.
+ * Copyright 2002-2015, Robert Sedgewick and Kevin Wayne.
  *
- *  This file is part of algs4.jar, which accompanies the textbook
+ * This file is part of algs4.jar, which accompanies the textbook
  *
- *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
- *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
- *      http://algs4.cs.princeton.edu
+ * Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
+ * Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
+ * http://algs4.cs.princeton.edu
  *
  *
- *  algs4.jar is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * algs4.jar is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  algs4.jar is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * algs4.jar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
+ * You should have received a copy of the GNU General Public License
+ * along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

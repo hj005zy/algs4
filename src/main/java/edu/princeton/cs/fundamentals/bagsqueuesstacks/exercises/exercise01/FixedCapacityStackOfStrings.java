@@ -84,9 +84,9 @@ public class FixedCapacityStackOfStrings implements Iterable<String> {
     public static void main(String[] args) {
         int max = Integer.parseInt(args[0]);
         FixedCapacityStackOfStrings stack = new FixedCapacityStackOfStrings(max);
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-")) {
+            if (!"-".equals(item)) {
                 stack.push(item);
             } else if (stack.isEmpty()) {
                 StdOut.println("BAD INPUT");

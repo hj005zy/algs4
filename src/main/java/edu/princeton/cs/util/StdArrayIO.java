@@ -53,6 +53,7 @@ package edu.princeton.cs.util;
  * <a href="http://introcs.cs.princeton.edu/22libary">Section 2.2</a> of
  * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i>
  * by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
@@ -64,6 +65,7 @@ public class StdArrayIO {
 
     /**
      * Reads a 1D array of doubles from standard input and returns it.
+     *
      * @return the 1D array of doubles
      */
     public static double[] readDouble1D() {
@@ -77,19 +79,21 @@ public class StdArrayIO {
 
     /**
      * Prints an array of doubles to standard output.
+     *
      * @param a the 1D array of doubles
      */
     public static void print(double[] a) {
         int N = a.length;
         StdOut.println(N);
-        for (int i = 0; i < N; i++) {
-            StdOut.printf("%9.5f ", a[i]);
+        for (double anA : a) {
+            StdOut.printf("%9.5f ", anA);
         }
         StdOut.println();
     }
 
     /**
      * Reads a 2D array of doubles from standard input and returns it.
+     *
      * @return the 2D array of doubles
      */
     public static double[][] readDouble2D() {
@@ -106,15 +110,16 @@ public class StdArrayIO {
 
     /**
      * Prints the 2D array of doubles to standard output.
+     *
      * @param a the 2D array of doubles
      */
     public static void print(double[][] a) {
         int M = a.length;
         int N = a[0].length;
         StdOut.println(M + " " + N);
-        for (int i = 0; i < M; i++) {
+        for (double[] anA : a) {
             for (int j = 0; j < N; j++) {
-                StdOut.printf("%9.5f ", a[i][j]);
+                StdOut.printf("%9.5f ", anA[j]);
             }
             StdOut.println();
         }
@@ -122,6 +127,7 @@ public class StdArrayIO {
 
     /**
      * Reads a 1D array of integers from standard input and returns it.
+     *
      * @return the 1D array of integers
      */
     public static int[] readInt1D() {
@@ -135,19 +141,21 @@ public class StdArrayIO {
 
     /**
      * Prints an array of integers to standard output.
+     *
      * @param a the 1D array of integers
      */
     public static void print(int[] a) {
         int N = a.length;
         StdOut.println(N);
-        for (int i = 0; i < N; i++) {
-            StdOut.printf("%9d ", a[i]);
+        for (int anA : a) {
+            StdOut.printf("%9d ", anA);
         }
         StdOut.println();
     }
 
     /**
      * Reads a 2D array of integers from standard input and returns it.
+     *
      * @return the 2D array of integers
      */
     public static int[][] readInt2D() {
@@ -164,15 +172,16 @@ public class StdArrayIO {
 
     /**
      * Print a 2D array of integers to standard output.
+     *
      * @param a the 2D array of integers
      */
     public static void print(int[][] a) {
         int M = a.length;
         int N = a[0].length;
         StdOut.println(M + " " + N);
-        for (int i = 0; i < M; i++) {
+        for (int[] anA : a) {
             for (int j = 0; j < N; j++) {
-                StdOut.printf("%9d ", a[i][j]);
+                StdOut.printf("%9d ", anA[j]);
             }
             StdOut.println();
         }
@@ -180,6 +189,7 @@ public class StdArrayIO {
 
     /**
      * Reads a 1D array of booleans from standard input and returns it.
+     *
      * @return the 1D array of booleans
      */
     public static boolean[] readBoolean1D() {
@@ -193,13 +203,14 @@ public class StdArrayIO {
 
     /**
      * Prints a 1D array of booleans to standard output.
+     *
      * @param a the 1D array of booleans
      */
     public static void print(boolean[] a) {
         int N = a.length;
         StdOut.println(N);
-        for (int i = 0; i < N; i++) {
-            if (a[i]) {
+        for (boolean anA : a) {
+            if (anA) {
                 StdOut.print("1 ");
             } else {
                 StdOut.print("0 ");
@@ -210,6 +221,7 @@ public class StdArrayIO {
 
     /**
      * Reads a 2D array of booleans from standard input and returns it.
+     *
      * @return the 2D array of booleans
      */
     public static boolean[][] readBoolean2D() {
@@ -226,15 +238,16 @@ public class StdArrayIO {
 
     /**
      * Prints a 2D array of booleans to standard output.
+     *
      * @param a the 2D array of booleans
      */
     public static void print(boolean[][] a) {
         int M = a.length;
         int N = a[0].length;
         StdOut.println(M + " " + N);
-        for (int i = 0; i < M; i++) {
+        for (boolean[] anA : a) {
             for (int j = 0; j < N; j++) {
-                if (a[i][j]) {
+                if (anA[j]) {
                     StdOut.print("1 ");
                 } else {
                     StdOut.print("0 ");

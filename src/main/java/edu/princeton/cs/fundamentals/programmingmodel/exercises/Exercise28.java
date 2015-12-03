@@ -52,7 +52,7 @@ public class Exercise28 {
         whitelist = removeDuplicates(whitelist);
 
         // read integer key from standard input; print if not in whitelist
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             int key = StdIn.readInt();
             if (BinarySearch.indexOf(whitelist, key) == -1) {
                 StdOut.println(key);

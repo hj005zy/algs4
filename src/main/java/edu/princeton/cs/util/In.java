@@ -46,6 +46,7 @@ import java.util.regex.Pattern;
  * consist of \n, \r, \r\n, and Unicode hex code points 0x2028, 0x2029, 0x0085;
  * see <tt><a href="http://www.docjar.com/html/api/java/util/Scanner.java.html">
  * Scanner.java</a></tt> (NB: Java 6u23 and earlier uses only \r, \r, \r\n).
+ *
  * @author David Pritchard
  * @author Robert Sedgewick
  * @author Kevin Wayne
@@ -88,6 +89,7 @@ public final class In {
 
     /**
      * Initializes an input stream from a socket.
+     *
      * @param socket the socket
      */
     public In(java.net.Socket socket) {
@@ -102,6 +104,7 @@ public final class In {
 
     /**
      * Initializes an input stream from a URL.
+     *
      * @param url the URL
      */
     public In(URL url) {
@@ -117,6 +120,7 @@ public final class In {
 
     /**
      * Initializes an input stream from a file.
+     *
      * @param file the file
      */
     public In(File file) {
@@ -130,6 +134,7 @@ public final class In {
 
     /**
      * Initializes an input stream from a filename or web page name.
+     *
      * @param s the filename or web page name
      */
     public In(String s) {
@@ -170,6 +175,7 @@ public final class In {
      * <p>
      * Note that this does not create a defensive copy, so the
      * scanner will be mutated as you read on.
+     *
      * @param scanner the scanner
      */
     public In(Scanner scanner) {
@@ -178,6 +184,7 @@ public final class In {
 
     /**
      * Returns true if this input stream exists.
+     *
      * @return <tt>true</tt> if this input stream exists; <tt>false</tt> otherwise
      */
     public boolean exists() {
@@ -191,6 +198,7 @@ public final class In {
      * Returns true if input stream is empty (except possibly whitespace).
      * Use this to know whether the next call to {@link #readString()},
      * {@link #readDouble()}, etc will succeed.
+     *
      * @return <tt>true</tt> if this input stream is empty (except possibly whitespace);
      * <tt>false</tt> otherwise
      */
@@ -203,6 +211,7 @@ public final class In {
      * Use this to know whether the next call to {@link #readLine()} will succeed.
      * <p>
      * Functionally equivalent to {@link #hasNextChar()}.
+     *
      * @return <tt>true</tt> if this input stream has a next line;
      * <tt>false</tt> otherwise
      */
@@ -215,6 +224,7 @@ public final class In {
      * Use this to know  whether the next call to {@link #readChar()} will succeed.
      * <p>
      * Functionally equivalent to {@link #hasNextLine()}.
+     *
      * @return <tt>true</tt> if this input stream is empty (including whitespace);
      * <tt>false</tt> otherwise
      */
@@ -227,6 +237,7 @@ public final class In {
 
     /**
      * Reads and returns the next line in this input stream.
+     *
      * @return the next line in this input stream; <tt>null</tt> if no such line
      */
     public String readLine() {
@@ -241,6 +252,7 @@ public final class In {
 
     /**
      * Reads and returns the next character in this input stream.
+     *
      * @return the next character in this input stream
      */
     public char readChar() {
@@ -254,6 +266,7 @@ public final class In {
 
     /**
      * Reads and returns the remainder of this input stream, as a string.
+     *
      * @return the remainder of this input stream, as a string
      */
     public String readAll() {
@@ -269,6 +282,7 @@ public final class In {
 
     /**
      * Reads the next token from this input stream and returns it as a <tt>String</tt>.
+     *
      * @return the next <tt>String</tt> in this input stream
      */
     public String readString() {
@@ -278,6 +292,7 @@ public final class In {
     /**
      * Reads the next token from this input stream, parses it as a <tt>int</tt>,
      * and returns the <tt>int</tt>.
+     *
      * @return the next <tt>int</tt> in this input stream
      */
     public int readInt() {
@@ -287,6 +302,7 @@ public final class In {
     /**
      * Reads the next token from this input stream, parses it as a <tt>double</tt>,
      * and returns the <tt>double</tt>.
+     *
      * @return the next <tt>double</tt> in this input stream
      */
     public double readDouble() {
@@ -296,6 +312,7 @@ public final class In {
     /**
      * Reads the next token from this input stream, parses it as a <tt>float</tt>,
      * and returns the <tt>float</tt>.
+     *
      * @return the next <tt>float</tt> in this input stream
      */
     public float readFloat() {
@@ -305,6 +322,7 @@ public final class In {
     /**
      * Reads the next token from this input stream, parses it as a <tt>long</tt>,
      * and returns the <tt>long</tt>.
+     *
      * @return the next <tt>long</tt> in this input stream
      */
     public long readLong() {
@@ -314,6 +332,7 @@ public final class In {
     /**
      * Reads the next token from this input stream, parses it as a <tt>short</tt>,
      * and returns the <tt>short</tt>.
+     *
      * @return the next <tt>short</tt> in this input stream
      */
     public short readShort() {
@@ -325,6 +344,7 @@ public final class In {
      * and returns the <tt>byte</tt>.
      * <p>
      * To read binary data, use {@link BinaryIn}.
+     *
      * @return the next <tt>byte</tt> in this input stream
      */
     public byte readByte() {
@@ -335,20 +355,21 @@ public final class In {
      * Reads the next token from this input stream, parses it as a <tt>boolean</tt>
      * (interpreting either <tt>"true"</tt> or <tt>"1"</tt> as <tt>true</tt>,
      * and either <tt>"false"</tt> or <tt>"0"</tt> as <tt>false</tt>).
+     *
      * @return the next <tt>boolean</tt> in this input stream
      */
     public boolean readBoolean() {
         String s = readString();
-        if (s.equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(s)) {
             return true;
         }
-        if (s.equalsIgnoreCase("false")) {
+        if ("false".equalsIgnoreCase(s)) {
             return false;
         }
-        if (s.equals("1")) {
+        if ("1".equals(s)) {
             return true;
         }
-        if (s.equals("0")) {
+        if ("0".equals(s)) {
             return false;
         }
         throw new InputMismatchException();
@@ -357,38 +378,39 @@ public final class In {
     /**
      * Reads all remaining tokens from this input stream and returns them as
      * an array of strings.
+     *
      * @return all remaining tokens in this input stream, as an array of strings
      */
     public String[] readAllStrings() {
         // we could use readAll.trim().split(), but that's not consistent
         // since trim() uses characters 0x00..0x20 as whitespace
         String[] tokens = WHITESPACE_PATTERN.split(readAll());
-        if (tokens.length == 0 || tokens[0].length() > 0) {
+        if (tokens.length == 0 || !tokens[0].isEmpty()) {
             return tokens;
         }
         String[] decapitokens = new String[tokens.length - 1];
-        for (int i = 0; i < tokens.length - 1; i++) {
-            decapitokens[i] = tokens[i + 1];
-        }
+        System.arraycopy(tokens, 1, decapitokens, 0, tokens.length - 1);
         return decapitokens;
     }
 
     /**
      * Reads all remaining lines from this input stream and returns them as
      * an array of strings.
+     *
      * @return all remaining lines in this input stream, as an array of strings
      */
     public String[] readAllLines() {
-        ArrayList<String> lines = new ArrayList<String>();
+        ArrayList<String> lines = new ArrayList<>();
         while (hasNextLine()) {
             lines.add(readLine());
         }
-        return lines.toArray(new String[0]);
+        return lines.toArray(new String[lines.size()]);
     }
 
     /**
      * Reads all remaining tokens from this input stream, parses them as integers,
      * and returns them as an array of integers.
+     *
      * @return all remaining lines in this input stream, as an array of integers
      */
     public int[] readAllInts() {
@@ -403,6 +425,7 @@ public final class In {
     /**
      * Reads all remaining tokens from this input stream, parses them as doubles,
      * and returns them as an array of doubles.
+     *
      * @return all remaining lines in this input stream, as an array of doubles
      */
     public double[] readAllDoubles() {
@@ -426,6 +449,7 @@ public final class In {
     /**
      * Reads all integers from a file and returns them as
      * an array of integers.
+     *
      * @param filename the name of the file
      * @return the integers in the file
      * @deprecated Replaced by <tt>new In(filename)</tt>.{@link #readAllInts()}.
@@ -437,6 +461,7 @@ public final class In {
     /**
      * Reads all doubles from a file and returns them as
      * an array of doubles.
+     *
      * @param filename the name of the file
      * @return the doubles in the file
      * @deprecated Replaced by <tt>new In(filename)</tt>.{@link #readAllDoubles()}.
@@ -448,6 +473,7 @@ public final class In {
     /**
      * Reads all strings from a file and returns them as
      * an array of strings.
+     *
      * @param filename the name of the file
      * @return the strings in the file
      * @deprecated Replaced by <tt>new In(filename)</tt>.{@link #readAllStrings()}.
@@ -459,6 +485,7 @@ public final class In {
     /**
      * Reads all integers from standard input and returns them
      * an array of integers.
+     *
      * @return the integers on standard input
      * @deprecated Replaced by {@link StdIn#readAllInts()}.
      */
@@ -469,6 +496,7 @@ public final class In {
     /**
      * Reads all doubles from standard input and returns them as
      * an array of doubles.
+     *
      * @return the doubles on standard input
      * @deprecated Replaced by {@link StdIn#readAllDoubles()}.
      */
@@ -479,6 +507,7 @@ public final class In {
     /**
      * Reads all strings from standard input and returns them as
      * an array of strings.
+     *
      * @return the strings on standard input
      * @deprecated Replaced by {@link StdIn#readAllStrings()}.
      */
@@ -509,7 +538,7 @@ public final class In {
         System.out.println("---------------------------------------------------------------------------");
         try {
             in = new In(urlName);
-            while (!in.isEmpty()) {
+            while (in.isEmpty()) {
                 String s = in.readLine();
                 System.out.println(s);
             }
@@ -523,7 +552,7 @@ public final class In {
         System.out.println("---------------------------------------------------------------------------");
         try {
             in = new In(urlName);
-            while (!in.isEmpty()) {
+            while (in.isEmpty()) {
                 String s = in.readString();
                 System.out.println(s);
             }
@@ -537,7 +566,7 @@ public final class In {
         System.out.println("---------------------------------------------------------------------------");
         try {
             in = new In("./InTest.txt");
-            while (!in.isEmpty()) {
+            while (in.isEmpty()) {
                 String s = in.readLine();
                 System.out.println(s);
             }
@@ -551,7 +580,7 @@ public final class In {
         System.out.println("---------------------------------------------------------------------------");
         try {
             in = new In("../stdlib/InTest.txt");
-            while (!in.isEmpty()) {
+            while (in.isEmpty()) {
                 String s = in.readLine();
                 System.out.println(s);
             }
@@ -565,7 +594,7 @@ public final class In {
         System.out.println("---------------------------------------------------------------------------");
         try {
             in = new In("InTest.txt");
-            while (!in.isEmpty()) {
+            while (in.isEmpty()) {
                 char c = in.readChar();
                 System.out.print(c);
             }
@@ -580,7 +609,7 @@ public final class In {
         System.out.println("---------------------------------------------------------------------------");
         in = new In("/n/fs/introcs/www/java/stdlib/InTest.txt");
         try {
-            while (!in.isEmpty()) {
+            while (in.isEmpty()) {
                 String s = in.readLine();
                 System.out.println(s);
             }
@@ -594,7 +623,7 @@ public final class In {
         System.out.println("---------------------------------------------------------------------------");
         try {
             in = new In("G:\\www\\introcs\\stdlib\\InTest.txt");
-            while (!in.isEmpty()) {
+            while (in.isEmpty()) {
                 String s = in.readLine();
                 System.out.println(s);
             }

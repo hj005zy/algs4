@@ -40,6 +40,7 @@ import edu.princeton.cs.util.StdOut;
  * <p>
  * For additional documentation, see <a href="http://algs4.cs.princeton.edu/12oop">Section 1.2</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
@@ -60,7 +61,7 @@ public class Whitelist {
         StaticSETofInts set = new StaticSETofInts(white);
 
         // Read key, print if not in whitelist.
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             int key = StdIn.readInt();
             if (!set.contains(key)) {
                 StdOut.println(key);

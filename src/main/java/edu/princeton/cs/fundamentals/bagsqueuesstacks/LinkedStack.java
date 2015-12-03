@@ -128,10 +128,11 @@ public class LinkedStack<Item> implements Iterable<Item> {
      *
      * @return the sequence of items in the stack in LIFO order, separated by spaces
      */
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (Item item : this) {
-            s.append(item + " ");
+            s.append(item).append(" ");
         }
         return s.toString();
     }
@@ -211,10 +212,10 @@ public class LinkedStack<Item> implements Iterable<Item> {
      * Unit tests the <tt>LinkedStack</tt> data type.
      */
     public static void main(String[] args) {
-        LinkedStack<String> s = new LinkedStack<String>();
-        while (!StdIn.isEmpty()) {
+        LinkedStack<String> s = new LinkedStack<>();
+        while (StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-")) {
+            if (!"-".equals(item)) {
                 s.push(item);
             } else if (!s.isEmpty()) {
                 StdOut.print(s.pop() + " ");

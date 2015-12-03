@@ -147,8 +147,8 @@ public final class StdAudio {
         if (samples == null) {
             throw new NullPointerException("argument to play() is null");
         }
-        for (int i = 0; i < samples.length; i++) {
-            play(samples[i]);
+        for (double sample : samples) {
+            play(sample);
         }
     }
 
@@ -310,8 +310,8 @@ public final class StdAudio {
 
         // scale increments
         int[] steps = {0, 2, 4, 5, 7, 9, 11, 12};
-        for (int i = 0; i < steps.length; i++) {
-            double hz = 440.0 * Math.pow(2, steps[i] / 12.0);
+        for (int step : steps) {
+            double hz = 440.0 * Math.pow(2, step / 12.0);
             StdAudio.play(note(hz, 1.0, 0.5));
         }
 

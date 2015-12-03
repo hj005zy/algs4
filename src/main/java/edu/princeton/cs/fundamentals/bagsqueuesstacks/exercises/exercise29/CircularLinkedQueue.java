@@ -15,6 +15,7 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
     // helper linked list class
     private class Node {
         private Item item;
+
         private Node next;
     }
 
@@ -29,6 +30,7 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
     /**
      * Is this queue empty?
+     *
      * @return true if this queue is empty; false otherwise
      */
     public boolean isEmpty() {
@@ -37,6 +39,7 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
     /**
      * Returns the number of items in this queue.
+     *
      * @return the number of items in this queue
      */
     public int size() {
@@ -45,6 +48,7 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
     /**
      * Returns the item least recently added to this queue.
+     *
      * @return the item least recently added to this queue
      * @throws NoSuchElementException if this queue is empty
      */
@@ -57,6 +61,7 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
     /**
      * Adds the item to this queue.
+     *
      * @param item the item to add
      */
     public void enqueue(Item item) {
@@ -76,6 +81,7 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
     /**
      * Removes and returns the item on this queue that was least recently added.
+     *
      * @return the item on this queue that was least recently added
      * @throws NoSuchElementException if this queue is empty
      */
@@ -95,8 +101,10 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
     /**
      * Returns a string representation of this queue.
+     *
      * @return the sequence of items in FIFO order, separated by spaces
      */
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (Item item : this) {
@@ -158,6 +166,7 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
     /**
      * Returns an iterator that iterates over the items in this queue in FIFO order.
+     *
      * @return an iterator that iterates over the items in this queue in FIFO order
      */
     @Override
@@ -198,9 +207,9 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
      */
     public static void main(String[] args) {
         CircularLinkedQueue<String> q = new CircularLinkedQueue<>();
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-")) {
+            if (!"-".equals(item)) {
                 q.enqueue(item);
             } else if (!q.isEmpty()) {
                 StdOut.print(q.dequeue() + " ");

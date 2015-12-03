@@ -28,16 +28,19 @@ import edu.princeton.cs.util.StdRandom;
  * For additional documentation,
  * see <a href="http://algs4.cs.princeton.edu/12oop">Section 1.2</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
 public class Counter implements Comparable<Counter> {
 
     private final String name;     // counter name
+
     private int count = 0;         // current value
 
     /**
      * Initializes a new counter starting at 0, with the given id.
+     *
      * @param id the name of the counter
      */
     public Counter(String id) {
@@ -53,6 +56,7 @@ public class Counter implements Comparable<Counter> {
 
     /**
      * Returns the current value of this counter.
+     *
      * @return the current value of this counter
      */
     public int tally() {
@@ -61,14 +65,17 @@ public class Counter implements Comparable<Counter> {
 
     /**
      * Returns a string representation of this counter.
+     *
      * @return a string representation of this counter
      */
+    @Override
     public String toString() {
         return count + " " + name;
     }
 
     /**
      * Compares this counter to the specified counter.
+     *
      * @param that the other counter
      * @return <tt>0</tt> if the value of this counter equals
      * the value of that counter; a negative integer if

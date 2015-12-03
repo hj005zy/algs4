@@ -100,7 +100,7 @@ public class Queue<Item> implements Iterable<Item> {
      */
     public void enqueue(Item item) {
         Node<Item> oldlast = last;
-        last = new Node<Item>();
+        last = new Node<>();
         last.item = item;
         last.next = null;
         if (isEmpty()) {
@@ -135,10 +135,11 @@ public class Queue<Item> implements Iterable<Item> {
      *
      * @return the sequence of items in FIFO order, separated by spaces
      */
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (Item item : this) {
-            s.append(item + " ");
+            s.append(item).append(" ");
         }
         return s.toString();
     }
@@ -150,7 +151,7 @@ public class Queue<Item> implements Iterable<Item> {
      */
     @Override
     public Iterator<Item> iterator() {
-        return new ListIterator<Item>(first);
+        return new ListIterator<>(first);
     }
 
     // an iterator, doesn't implement remove() since it's optional
@@ -186,10 +187,10 @@ public class Queue<Item> implements Iterable<Item> {
      * Unit tests the <tt>Queue</tt> data type.
      */
     public static void main(String[] args) {
-        Queue<String> q = new Queue<String>();
-        while (!StdIn.isEmpty()) {
+        Queue<String> q = new Queue<>();
+        while (StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-")) {
+            if (!"-".equals(item)) {
                 q.enqueue(item);
             } else if (!q.isEmpty()) {
                 StdOut.print(q.dequeue() + " ");

@@ -98,7 +98,7 @@ public class Bag<Item> implements Iterable<Item> {
      */
     public void add(Item item) {
         Node<Item> oldfirst = first;
-        first = new Node<Item>();
+        first = new Node<>();
         first.item = item;
         first.next = oldfirst;
         N++;
@@ -111,7 +111,7 @@ public class Bag<Item> implements Iterable<Item> {
      */
     @Override
     public Iterator<Item> iterator() {
-        return new ListIterator<Item>(first);
+        return new ListIterator<>(first);
     }
 
     // an iterator, doesn't implement remove() since it's optional
@@ -147,8 +147,8 @@ public class Bag<Item> implements Iterable<Item> {
      * Unit tests the <tt>Bag</tt> data type.
      */
     public static void main(String[] args) {
-        Bag<String> bag = new Bag<String>();
-        while (!StdIn.isEmpty()) {
+        Bag<String> bag = new Bag<>();
+        while (StdIn.isEmpty()) {
             String item = StdIn.readString();
             bag.add(item);
         }

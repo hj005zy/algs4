@@ -33,17 +33,17 @@
 package edu.princeton.cs.util;
 
 /**
- *  <i>Standard statistics</i>. This class provides methods for computing
- *  statistics such as min, max, mean, sample standard deviation, and
- *  sample variance.
- *  <p>
- *  For additional documentation, see
- *  <a href="http://introcs.cs.princeton.edu/22library">Section 2.2</a> of
- *  <i>Introduction to Programming in Java: An Interdisciplinary Approach</i>
- *  by Robert Sedgewick and Kevin Wayne.
+ * <i>Standard statistics</i>. This class provides methods for computing
+ * statistics such as min, max, mean, sample standard deviation, and
+ * sample variance.
+ * <p>
+ * For additional documentation, see
+ * <a href="http://introcs.cs.princeton.edu/22library">Section 2.2</a> of
+ * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i>
+ * by Robert Sedgewick and Kevin Wayne.
  *
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
+ * @author Robert Sedgewick
+ * @author Kevin Wayne
  */
 public final class StdStats {
 
@@ -53,18 +53,18 @@ public final class StdStats {
     /**
      * Returns the maximum value in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the maximum value in the array <tt>a[]</tt>,
-     *         <tt>Double.NEGATIVE_INFINITY</tt> if no such value
+     * <tt>Double.NEGATIVE_INFINITY</tt> if no such value
      */
     public static double max(double[] a) {
         double max = Double.NEGATIVE_INFINITY;
-        for (int i = 0; i < a.length; i++) {
-            if (Double.isNaN(a[i])) {
+        for (double anA : a) {
+            if (Double.isNaN(anA)) {
                 return Double.NaN;
             }
-            if (a[i] > max) {
-                max = a[i];
+            if (anA > max) {
+                max = anA;
             }
         }
         return max;
@@ -73,11 +73,11 @@ public final class StdStats {
     /**
      * Returns the maximum value in the subarray.
      *
-     * @param  a the array
-     * @param  lo the left endpoint of the subarray (inclusive)
-     * @param  hi the right endpoint of the subarray (inclusive)
+     * @param a  the array
+     * @param lo the left endpoint of the subarray (inclusive)
+     * @param hi the right endpoint of the subarray (inclusive)
      * @return the maximum value in the subarray <tt>a[lo..hi]</tt>,
-     *         <tt>Double.NEGATIVE_INFINITY</tt> if no such value
+     * <tt>Double.NEGATIVE_INFINITY</tt> if no such value
      */
     public static double max(double[] a, int lo, int hi) {
         if (lo < 0 || hi >= a.length || lo > hi) {
@@ -98,15 +98,15 @@ public final class StdStats {
     /**
      * Returns the maximum value in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the maximum value in the array <tt>a[]</tt>,
-     *         <tt>Integer.MIN_VALUE</tt> if no such value
+     * <tt>Integer.MIN_VALUE</tt> if no such value
      */
     public static int max(int[] a) {
         int max = Integer.MIN_VALUE;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] > max) {
-                max = a[i];
+        for (int anA : a) {
+            if (anA > max) {
+                max = anA;
             }
         }
         return max;
@@ -115,18 +115,18 @@ public final class StdStats {
     /**
      * Returns the minimum value in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the minimum value in the array <tt>a[]</tt>,
-     *         <tt>Double.POSITIVE_INFINITY</tt> if no such value
+     * <tt>Double.POSITIVE_INFINITY</tt> if no such value
      */
     public static double min(double[] a) {
         double min = Double.POSITIVE_INFINITY;
-        for (int i = 0; i < a.length; i++) {
-            if (Double.isNaN(a[i])) {
+        for (double anA : a) {
+            if (Double.isNaN(anA)) {
                 return Double.NaN;
             }
-            if (a[i] < min) {
-                min = a[i];
+            if (anA < min) {
+                min = anA;
             }
         }
         return min;
@@ -135,11 +135,11 @@ public final class StdStats {
     /**
      * Returns the minimum value in the subarray.
      *
-     * @param  a the array
-     * @param  lo the left endpoint of the subarray (inclusive)
-     * @param  hi the right endpoint of the subarray (inclusive)
+     * @param a  the array
+     * @param lo the left endpoint of the subarray (inclusive)
+     * @param hi the right endpoint of the subarray (inclusive)
      * @return the maximum value in the subarray <tt>a[lo..hi]</tt>,
-     *         <tt>Double.POSITIVE_INFINITY</tt> if no such value
+     * <tt>Double.POSITIVE_INFINITY</tt> if no such value
      */
     public static double min(double[] a, int lo, int hi) {
         if (lo < 0 || hi >= a.length || lo > hi) {
@@ -160,15 +160,15 @@ public final class StdStats {
     /**
      * Returns the minimum value in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the minimum value in the array <tt>a[]</tt>,
-     *         <tt>Integer.MAX_VALUE</tt> if no such value
+     * <tt>Integer.MAX_VALUE</tt> if no such value
      */
     public static int min(int[] a) {
         int min = Integer.MAX_VALUE;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] < min) {
-                min = a[i];
+        for (int anA : a) {
+            if (anA < min) {
+                min = anA;
             }
         }
         return min;
@@ -177,9 +177,9 @@ public final class StdStats {
     /**
      * Returns the average value in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the average value in the array <tt>a[]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double mean(double[] a) {
         if (a.length == 0) {
@@ -192,11 +192,11 @@ public final class StdStats {
     /**
      * Returns the average value in the subarray.
      *
-     * @param a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the average value in the subarray <tt>a[lo..hi]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double mean(double[] a, int lo, int hi) {
         int length = hi - lo + 1;
@@ -213,17 +213,17 @@ public final class StdStats {
     /**
      * Returns the average value in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the average value in the array <tt>a[]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double mean(int[] a) {
         if (a.length == 0) {
             return Double.NaN;
         }
         double sum = 0.0;
-        for (int i = 0; i < a.length; i++) {
-            sum = sum + a[i];
+        for (int anA : a) {
+            sum = sum + anA;
         }
         return sum / a.length;
     }
@@ -231,9 +231,9 @@ public final class StdStats {
     /**
      * Returns the sample variance in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sample variance in the array <tt>a[]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double var(double[] a) {
         if (a.length == 0) {
@@ -241,8 +241,8 @@ public final class StdStats {
         }
         double avg = mean(a);
         double sum = 0.0;
-        for (int i = 0; i < a.length; i++) {
-            sum += (a[i] - avg) * (a[i] - avg);
+        for (double anA : a) {
+            sum += (anA - avg) * (anA - avg);
         }
         return sum / (a.length - 1);
     }
@@ -250,11 +250,11 @@ public final class StdStats {
     /**
      * Returns the sample variance in the subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the sample variance in the subarray <tt>a[lo..hi]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double var(double[] a, int lo, int hi) {
         int length = hi - lo + 1;
@@ -275,9 +275,9 @@ public final class StdStats {
     /**
      * Returns the sample variance in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sample variance in the array <tt>a[]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double var(int[] a) {
         if (a.length == 0) {
@@ -285,8 +285,8 @@ public final class StdStats {
         }
         double avg = mean(a);
         double sum = 0.0;
-        for (int i = 0; i < a.length; i++) {
-            sum += (a[i] - avg) * (a[i] - avg);
+        for (int anA : a) {
+            sum += (anA - avg) * (anA - avg);
         }
         return sum / (a.length - 1);
     }
@@ -294,9 +294,9 @@ public final class StdStats {
     /**
      * Returns the population variance in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the population variance in the array <tt>a[]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double varp(double[] a) {
         if (a.length == 0) {
@@ -304,8 +304,8 @@ public final class StdStats {
         }
         double avg = mean(a);
         double sum = 0.0;
-        for (int i = 0; i < a.length; i++) {
-            sum += (a[i] - avg) * (a[i] - avg);
+        for (double anA : a) {
+            sum += (anA - avg) * (anA - avg);
         }
         return sum / a.length;
     }
@@ -313,11 +313,11 @@ public final class StdStats {
     /**
      * Returns the population variance in the subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the population variance in the subarray <tt>a[lo..hi]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double varp(double[] a, int lo, int hi) {
         int length = hi - lo + 1;
@@ -338,9 +338,9 @@ public final class StdStats {
     /**
      * Returns the sample standard deviation in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sample standard deviation in the array <tt>a[]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double stddev(double[] a) {
         return Math.sqrt(var(a));
@@ -349,9 +349,9 @@ public final class StdStats {
     /**
      * Returns the sample standard deviation in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sample standard deviation in the array <tt>a[]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double stddev(int[] a) {
         return Math.sqrt(var(a));
@@ -360,11 +360,11 @@ public final class StdStats {
     /**
      * Returns the sample standard deviation in the subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the sample standard deviation in the subarray <tt>a[lo..hi]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double stddev(double[] a, int lo, int hi) {
         return Math.sqrt(var(a, lo, hi));
@@ -373,9 +373,9 @@ public final class StdStats {
     /**
      * Returns the population standard deviation in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the population standard deviation in the subarray <tt>a[lo]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double stddevp(double[] a) {
         return Math.sqrt(varp(a));
@@ -384,11 +384,11 @@ public final class StdStats {
     /**
      * Returns the population standard deviation in the subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the population standard deviation in the subarray <tt>a[lo..hi]</tt>,
-     *         <tt>Double.NaN</tt> if no such value
+     * <tt>Double.NaN</tt> if no such value
      */
     public static double stddevp(double[] a, int lo, int hi) {
         return Math.sqrt(varp(a, lo, hi));
@@ -397,14 +397,14 @@ public final class StdStats {
     /**
      * Returns the sum of all values in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sum of all values in the array <tt>a[]</tt>,
-     *         <tt>0.0</tt> if no such value
+     * <tt>0.0</tt> if no such value
      */
     public static double sum(double[] a) {
         double sum = 0.0;
-        for (int i = 0; i < a.length; i++) {
-            sum += a[i];
+        for (double anA : a) {
+            sum += anA;
         }
         return sum;
     }
@@ -412,11 +412,11 @@ public final class StdStats {
     /**
      * Returns the sum of all values in the subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the sum of all values in the subarray <tt>a[lo..hi]</tt>,
-     *         <tt>0.0</tt> if no such value
+     * <tt>0.0</tt> if no such value
      */
     public static double sum(double[] a, int lo, int hi) {
         if (lo < 0 || hi >= a.length || lo > hi) {
@@ -432,14 +432,14 @@ public final class StdStats {
     /**
      * Returns the sum of all values in the array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sum of all values in the array <tt>a[]</tt>,
-     *         <tt>0.0</tt> if no such value
+     * <tt>0.0</tt> if no such value
      */
     public static int sum(int[] a) {
         int sum = 0;
-        for (int i = 0; i < a.length; i++) {
-            sum += a[i];
+        for (int anA : a) {
+            sum += anA;
         }
         return sum;
     }
@@ -503,25 +503,25 @@ public final class StdStats {
 }
 
 /******************************************************************************
- *  Copyright 2002-2015, Robert Sedgewick and Kevin Wayne.
+ * Copyright 2002-2015, Robert Sedgewick and Kevin Wayne.
  *
- *  This file is part of algs4.jar, which accompanies the textbook
+ * This file is part of algs4.jar, which accompanies the textbook
  *
- *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
- *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
- *      http://algs4.cs.princeton.edu
+ * Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
+ * Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
+ * http://algs4.cs.princeton.edu
  *
  *
- *  algs4.jar is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * algs4.jar is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  algs4.jar is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * algs4.jar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
+ * You should have received a copy of the GNU General Public License
+ * along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

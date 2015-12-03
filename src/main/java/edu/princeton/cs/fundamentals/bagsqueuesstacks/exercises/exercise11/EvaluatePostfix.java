@@ -43,7 +43,7 @@ public class EvaluatePostfix {
     public static void main(String[] args) {
         Stack<Integer> stack = new Stack<>();
 
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             String s = StdIn.readString();
             switch (s) {
                 case "+":

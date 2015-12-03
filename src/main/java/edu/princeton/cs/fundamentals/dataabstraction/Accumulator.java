@@ -30,12 +30,15 @@ import edu.princeton.cs.util.StdOut;
  * For additional documentation,
  * see <a href="http://algs4.cs.princeton.edu/12oop">Section 1.2</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
 public class Accumulator {
     private int n = 0;          // number of data values
+
     private double sum = 0.0;   // sample variance * (n-1)
+
     private double mu = 0.0;    // sample mean
 
     /**
@@ -46,6 +49,7 @@ public class Accumulator {
 
     /**
      * Adds the specified data value to the accumulator.
+     *
      * @param x the data value
      */
     public void addDataValue(double x) {
@@ -57,6 +61,7 @@ public class Accumulator {
 
     /**
      * Returns the mean of the data values.
+     *
      * @return the mean of the data values
      */
     public double mean() {
@@ -65,6 +70,7 @@ public class Accumulator {
 
     /**
      * Returns the sample variance of the data values.
+     *
      * @return the sample variance of the data values
      */
     public double var() {
@@ -73,6 +79,7 @@ public class Accumulator {
 
     /**
      * Returns the sample standard deviation of the data values.
+     *
      * @return the sample standard deviation of the data values
      */
     public double stddev() {
@@ -81,6 +88,7 @@ public class Accumulator {
 
     /**
      * Returns the number of data values.
+     *
      * @return the number of data values
      */
     public int count() {
@@ -96,7 +104,7 @@ public class Accumulator {
      */
     public static void main(String[] args) {
         Accumulator stats = new Accumulator();
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             double x = StdIn.readDouble();
             stats.addDataValue(x);
         }

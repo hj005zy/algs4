@@ -90,7 +90,7 @@ public class Stack<Item> implements Iterable<Item> {
      */
     public void push(Item item) {
         Node<Item> oldfirst = first;
-        first = new Node<Item>();
+        first = new Node<>();
         first.item = item;
         first.next = oldfirst;
         N++;
@@ -130,10 +130,11 @@ public class Stack<Item> implements Iterable<Item> {
      *
      * @return the sequence of items in this stack in LIFO order, separated by spaces
      */
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (Item item : this) {
-            s.append(item + " ");
+            s.append(item).append(" ");
         }
         return s.toString();
     }
@@ -145,7 +146,7 @@ public class Stack<Item> implements Iterable<Item> {
      */
     @Override
     public Iterator<Item> iterator() {
-        return new ListIterator<Item>(first);
+        return new ListIterator<>(first);
     }
 
     // an iterator, doesn't implement remove() since it's optional
@@ -181,10 +182,10 @@ public class Stack<Item> implements Iterable<Item> {
      * Unit tests the <tt>Stack</tt> data type.
      */
     public static void main(String[] args) {
-        Stack<String> s = new Stack<String>();
-        while (!StdIn.isEmpty()) {
+        Stack<String> s = new Stack<>();
+        while (StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-")) {
+            if (!"-".equals(item)) {
                 s.push(item);
             } else if (!s.isEmpty()) {
                 StdOut.print(s.pop() + " ");

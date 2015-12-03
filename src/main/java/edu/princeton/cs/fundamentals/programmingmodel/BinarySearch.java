@@ -38,6 +38,7 @@ import java.util.Arrays;
  * <p>
  * For additional documentation, see <a href="http://algs4.cs.princeton.edu/11model">Section 1.1</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
@@ -51,6 +52,7 @@ public class BinarySearch {
 
     /**
      * Returns the index of the specified key in the specified array.
+     *
      * @param a   the array of integers, must be sorted in ascending order
      * @param key the search key
      * @return index of key in array <tt>a</tt> if present; <tt>-1</tt> otherwise
@@ -76,6 +78,7 @@ public class BinarySearch {
      * Returns the index of the specified key in the specified array.
      * This function is poorly named because it does not give the <em>rank</em>
      * if the array has duplicate keys or if the key is not in the array.
+     *
      * @param key the search key
      * @param a   the array of integers, must be sorted in ascending order
      * @return index of key in array <tt>a</tt> if present; <tt>-1</tt> otherwise
@@ -100,7 +103,7 @@ public class BinarySearch {
         Arrays.sort(whitelist);
 
         // read integer key from standard input; print if not in whitelist
-        while (!StdIn.isEmpty()) {
+        while (StdIn.isEmpty()) {
             int key = StdIn.readInt();
             if (BinarySearch.indexOf(whitelist, key) == -1) {
                 StdOut.println(key);

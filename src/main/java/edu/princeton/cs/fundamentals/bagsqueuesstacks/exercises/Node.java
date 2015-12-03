@@ -22,6 +22,7 @@ public class Node<Item> {
         this.next = next;
     }
 
+    @SafeVarargs
     public static <Item> Node<Item> createLinkedList(Item... items) {
         Node<Item> head = null;
         Node<Item> next = null;

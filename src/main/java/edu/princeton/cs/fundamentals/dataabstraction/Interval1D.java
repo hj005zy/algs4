@@ -139,6 +139,7 @@ public class Interval1D {
      *
      * @return a string representation of this interval in the form [left, right]
      */
+    @Override
     public String toString() {
         return "[" + left + ", " + right + "]";
     }
@@ -150,6 +151,7 @@ public class Interval1D {
      * @return <tt>true</tt> if this interval equals the other interval;
      * <tt>false</tt> otherwise
      */
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -169,6 +171,7 @@ public class Interval1D {
      *
      * @return an integer hash code for this interval
      */
+    @Override
     public int hashCode() {
         int hash1 = ((Double) left).hashCode();
         int hash2 = ((Double) right).hashCode();
@@ -238,29 +241,29 @@ public class Interval1D {
         intervals[3] = new Interval1D(46.0, 55.0);
 
         StdOut.println("Unsorted");
-        for (int i = 0; i < intervals.length; i++) {
-            StdOut.println(intervals[i]);
+        for (Interval1D interval3 : intervals) {
+            StdOut.println(interval3);
         }
         StdOut.println();
 
         StdOut.println("Sort by left endpoint");
         Arrays.sort(intervals, Interval1D.LEFT_ENDPOINT_ORDER);
-        for (int i = 0; i < intervals.length; i++) {
-            StdOut.println(intervals[i]);
+        for (Interval1D interval2 : intervals) {
+            StdOut.println(interval2);
         }
         StdOut.println();
 
         StdOut.println("Sort by right endpoint");
         Arrays.sort(intervals, Interval1D.RIGHT_ENDPOINT_ORDER);
-        for (int i = 0; i < intervals.length; i++) {
-            StdOut.println(intervals[i]);
+        for (Interval1D interval1 : intervals) {
+            StdOut.println(interval1);
         }
         StdOut.println();
 
         StdOut.println("Sort by length");
         Arrays.sort(intervals, Interval1D.LENGTH_ORDER);
-        for (int i = 0; i < intervals.length; i++) {
-            StdOut.println(intervals[i]);
+        for (Interval1D interval : intervals) {
+            StdOut.println(interval);
         }
         StdOut.println();
     }
