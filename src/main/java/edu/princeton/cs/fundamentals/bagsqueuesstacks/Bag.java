@@ -47,17 +47,20 @@ import java.util.NoSuchElementException;
  * <p>
  * For additional documentation, see <a href="http://algs4.cs.princeton.edu/13stacks">Section 1.3</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @param <Item> the generic type of an item in this bag
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
 public class Bag<Item> implements Iterable<Item> {
     private int N;               // number of elements in bag
+
     private Node<Item> first;    // beginning of bag
 
     // helper linked list class
     private static class Node<Item> {
         private Item item;
+
         private Node<Item> next;
     }
 
@@ -71,6 +74,7 @@ public class Bag<Item> implements Iterable<Item> {
 
     /**
      * Returns true if this bag is empty.
+     *
      * @return <tt>true</tt> if this bag is empty;
      * <tt>false</tt> otherwise
      */
@@ -80,6 +84,7 @@ public class Bag<Item> implements Iterable<Item> {
 
     /**
      * Returns the number of items in this bag.
+     *
      * @return the number of items in this bag
      */
     public int size() {
@@ -88,6 +93,7 @@ public class Bag<Item> implements Iterable<Item> {
 
     /**
      * Adds the item to this bag.
+     *
      * @param item the item to add to this bag
      */
     public void add(Item item) {
@@ -100,8 +106,10 @@ public class Bag<Item> implements Iterable<Item> {
 
     /**
      * Returns an iterator that iterates over the items in this bag in arbitrary order.
+     *
      * @return an iterator that iterates over the items in this bag in arbitrary order
      */
+    @Override
     public Iterator<Item> iterator() {
         return new ListIterator<Item>(first);
     }
@@ -114,14 +122,17 @@ public class Bag<Item> implements Iterable<Item> {
             current = first;
         }
 
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();

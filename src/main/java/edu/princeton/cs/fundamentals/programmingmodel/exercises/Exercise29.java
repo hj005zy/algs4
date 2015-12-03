@@ -31,7 +31,6 @@ public class Exercise29 {
             return 0;
         }
         while (a[--index] == key && index >= 0) {
-            ;
         }
         return index + 1;
     }
@@ -44,11 +43,9 @@ public class Exercise29 {
         int count = 1;
         int previousIndex = index - 1;
         for (; previousIndex >= 0 && a[previousIndex] == key; previousIndex--, count++) {
-            ;
         }
         int nextIndex = index + 1;
         for (; nextIndex < a.length && a[nextIndex] == key; nextIndex++, count++) {
-            ;
         }
 
         return count;

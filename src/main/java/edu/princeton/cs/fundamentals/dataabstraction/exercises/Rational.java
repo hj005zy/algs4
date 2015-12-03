@@ -37,6 +37,7 @@ public class Rational implements Comparable<Rational> {
     private static Rational zero = new Rational(0, 1);
 
     private long num;   // the numerator
+
     private long den;   // the denominator
 
     // create and initialize a new Rational object
@@ -83,6 +84,7 @@ public class Rational implements Comparable<Rational> {
     }
 
     // return { -1, 0, +1 } if this < that, this = that, or this > that
+    @Override
     public int compareTo(Rational that) {
         long lhs = this.num * that.den;
         long rhs = this.den * that.num;

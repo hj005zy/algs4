@@ -34,13 +34,17 @@ import java.util.NoSuchElementException;
  * <p>
  * For additional documentation, see <a href="http://algs4.cs.princeton.edu/13stacks">Section 1.3</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
 public class ResizingArrayQueue<Item> implements Iterable<Item> {
     private Item[] q;       // queue elements
+
     private int N;          // number of elements on queue
+
     private int first;      // index of first element of queue
+
     private int last;       // index of next available slot
 
     /**
@@ -55,6 +59,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Is this queue empty?
+     *
      * @return true if this queue is empty; false otherwise
      */
     public boolean isEmpty() {
@@ -63,6 +68,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Returns the number of items in this queue.
+     *
      * @return the number of items in this queue
      */
     public int size() {
@@ -83,6 +89,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Adds the item to this queue.
+     *
      * @param item the item to add
      */
     public void enqueue(Item item) {
@@ -99,6 +106,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Removes and returns the item on this queue that was least recently added.
+     *
      * @return the item on this queue that was least recently added
      * @throws java.util.NoSuchElementException if this queue is empty
      */
@@ -122,6 +130,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Returns the item least recently added to this queue.
+     *
      * @return the item least recently added to this queue
      * @throws java.util.NoSuchElementException if this queue is empty
      */
@@ -134,8 +143,10 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Returns an iterator that iterates over the items in this queue in FIFO order.
+     *
      * @return an iterator that iterates over the items in this queue in FIFO order
      */
+    @Override
     public Iterator<Item> iterator() {
         return new ArrayIterator();
     }
@@ -144,14 +155,17 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
     private class ArrayIterator implements Iterator<Item> {
         private int i = 0;
 
+        @Override
         public boolean hasNext() {
             return i < N;
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();

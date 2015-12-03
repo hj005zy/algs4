@@ -20,16 +20,20 @@ import java.util.Comparator;
  * For additional documentation,
  * see <a href="http://algs4.cs.princeton.edu/12oop">Section 1.2</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
 public class Transaction implements Comparable<Transaction> {
     private final String who;      // customer
+
     private final Date when;     // date
+
     private final double amount;   // amount
 
     /**
      * Initializes a new transaction from the given arguments.
+     *
      * @param who    the person involved in this transaction
      * @param when   the date of this transaction
      * @param amount the amount of this transaction
@@ -52,6 +56,7 @@ public class Transaction implements Comparable<Transaction> {
 
     /**
      * Initializes a new transaction by parsing a string of the form NAME DATE AMOUNT.
+     *
      * @param transaction the string to parse
      * @throws IllegalArgumentException if <tt>amount</tt>
      *                                  is <tt>Double.NaN</tt>, <tt>Double.POSITIVE_INFINITY</tt>,
@@ -74,6 +79,7 @@ public class Transaction implements Comparable<Transaction> {
 
     /**
      * Returns the name of the customer involved in this transaction.
+     *
      * @return the name of the customer involved in this transaction
      */
     public String who() {
@@ -82,6 +88,7 @@ public class Transaction implements Comparable<Transaction> {
 
     /**
      * Returns the date of this transaction.
+     *
      * @return the date of this transaction
      */
     public Date when() {
@@ -90,6 +97,7 @@ public class Transaction implements Comparable<Transaction> {
 
     /**
      * Returns the amount of this transaction.
+     *
      * @return the amount of this transaction
      */
     public double amount() {
@@ -98,6 +106,7 @@ public class Transaction implements Comparable<Transaction> {
 
     /**
      * Returns a string representation of this transaction.
+     *
      * @return a string representation of this transaction
      */
     @Override
@@ -107,11 +116,13 @@ public class Transaction implements Comparable<Transaction> {
 
     /**
      * Compares two transactions by amount.
+     *
      * @param that the other transaction
      * @return { a negative integer, zero, a positive integer}, depending
      * on whether the amount of this transaction is { less than,
      * equal to, or greater than } the amount of that transaction
      */
+    @Override
     public int compareTo(Transaction that) {
         if (this.amount < that.amount) {
             return -1;
@@ -124,6 +135,7 @@ public class Transaction implements Comparable<Transaction> {
 
     /**
      * Compares this transaction to the specified object.
+     *
      * @param other the other transaction
      * @return true if this transaction is equal to <tt>other</tt>; false otherwise
      */
@@ -145,6 +157,7 @@ public class Transaction implements Comparable<Transaction> {
 
     /**
      * Returns a hash code for this transaction.
+     *
      * @return a hash code for this transaction
      */
     public int hashCode() {

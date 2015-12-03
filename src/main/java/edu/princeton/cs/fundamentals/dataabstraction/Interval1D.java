@@ -23,6 +23,7 @@ import java.util.Comparator;
  * For additional documentation,
  * see <a href="http://algs4.cs.princeton.edu/12oop">Section 1.2</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
@@ -44,10 +45,12 @@ public class Interval1D {
     public static final Comparator<Interval1D> LENGTH_ORDER = new LengthComparator();
 
     private final double left;
+
     private final double right;
 
     /**
      * Initializes a closed interval [left, right].
+     *
      * @param left  the left endpoint
      * @param right the right endpoint
      * @throws IllegalArgumentException if the left endpoint is greater than the right endpoint
@@ -81,6 +84,7 @@ public class Interval1D {
 
     /**
      * Returns the left endpoint of this interval.
+     *
      * @return the left endpoint of this interval
      */
     public double left() {
@@ -89,6 +93,7 @@ public class Interval1D {
 
     /**
      * Returns the right endpoint of this interval.
+     *
      * @return the right endpoint of this interval
      */
     public double right() {
@@ -97,6 +102,7 @@ public class Interval1D {
 
     /**
      * Returns true if this interval intersects the specified interval.
+     *
      * @param that the other interval
      * @return <tt>true</tt> if this interval intersects the argument interval;
      * <tt>false</tt> otherwise
@@ -105,14 +111,12 @@ public class Interval1D {
         if (this.right < that.left) {
             return false;
         }
-        if (that.right < this.left) {
-            return false;
-        }
-        return true;
+        return that.right >= this.left;
     }
 
     /**
      * Returns true if this interval contains the specified value.
+     *
      * @param x the value
      * @return <tt>true</tt> if this interval contains the value <tt>x</tt>;
      * <tt>false</tt> otherwise
@@ -123,6 +127,7 @@ public class Interval1D {
 
     /**
      * Returns the length of this interval.
+     *
      * @return the length of this interval (right - left)
      */
     public double length() {
@@ -131,6 +136,7 @@ public class Interval1D {
 
     /**
      * Returns a string representation of this interval.
+     *
      * @return a string representation of this interval in the form [left, right]
      */
     public String toString() {
@@ -139,6 +145,7 @@ public class Interval1D {
 
     /**
      * Compares this transaction to the specified object.
+     *
      * @param other the other interval
      * @return <tt>true</tt> if this interval equals the other interval;
      * <tt>false</tt> otherwise
@@ -159,6 +166,7 @@ public class Interval1D {
 
     /**
      * Returns an integer hash code for this interval.
+     *
      * @return an integer hash code for this interval
      */
     public int hashCode() {
@@ -169,6 +177,7 @@ public class Interval1D {
 
     // ascending order of left endpoint, breaking ties by right endpoint
     private static class LeftComparator implements Comparator<Interval1D> {
+        @Override
         public int compare(Interval1D a, Interval1D b) {
             if (a.left < b.left) {
                 return -1;
@@ -186,6 +195,7 @@ public class Interval1D {
 
     // ascending order of right endpoint, breaking ties by left endpoint
     private static class RightComparator implements Comparator<Interval1D> {
+        @Override
         public int compare(Interval1D a, Interval1D b) {
             if (a.right < b.right) {
                 return -1;
@@ -203,6 +213,7 @@ public class Interval1D {
 
     // ascending order of length
     private static class LengthComparator implements Comparator<Interval1D> {
+        @Override
         public int compare(Interval1D a, Interval1D b) {
             double alen = a.length();
             double blen = b.length();

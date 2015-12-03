@@ -31,32 +31,37 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- *  <i>Standard audio</i>. This class provides a basic capability for
- *  creating, reading, and saving audio. 
- *  <p>
- *  The audio format uses a sampling rate of 44,100 (CD quality audio), 16-bit, monaural.
+ * <i>Standard audio</i>. This class provides a basic capability for
+ * creating, reading, and saving audio.
+ * <p>
+ * The audio format uses a sampling rate of 44,100 (CD quality audio), 16-bit, monaural.
  *
- *  <p>
- *  For additional documentation, see <a href="http://introcs.cs.princeton.edu/15inout">Section 1.5</a> of
- *  <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
+ * <p>
+ * For additional documentation, see <a href="http://introcs.cs.princeton.edu/15inout">Section 1.5</a> of
+ * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
  *
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
+ * @author Robert Sedgewick
+ * @author Kevin Wayne
  */
 public final class StdAudio {
 
     /**
-     *  The sample rate - 44,100 Hz for CD quality audio.
+     * The sample rate - 44,100 Hz for CD quality audio.
      */
     public static final int SAMPLE_RATE = 44100;
 
     private static final int BYTES_PER_SAMPLE = 2;                // 16-bit audio
+
     private static final int BITS_PER_SAMPLE = 16;                // 16-bit audio
+
     private static final double MAX_16_BIT = Short.MAX_VALUE;     // 32,767
+
     private static final int SAMPLE_BUFFER_SIZE = 4096;
 
     private static SourceDataLine line;   // to play the sound
+
     private static byte[] buffer;         // our internal buffer
+
     private static int bufferSize = 0;    // number of samples currently in internal buffer
 
     private StdAudio() {
@@ -103,7 +108,7 @@ public final class StdAudio {
      * Writes one sample (between -1.0 and +1.0) to standard audio.
      * If the sample is outside the range, it will be clipped.
      *
-     * @param  sample the sample to play
+     * @param sample the sample to play
      * @throws IllegalArgumentException if the sample is <tt>Double.NaN</tt>
      */
     public static void play(double sample) {
@@ -135,7 +140,7 @@ public final class StdAudio {
      * Writes the array of samples (between -1.0 and +1.0) to standard audio.
      * If a sample is outside the range, it will be clipped.
      *
-     * @param  samples the array of samples to play
+     * @param samples the array of samples to play
      * @throws IllegalArgumentException if any sample is <tt>Double.NaN</tt>
      */
     public static void play(double[] samples) {
@@ -151,7 +156,7 @@ public final class StdAudio {
      * Reads audio samples from a file (in .wav or .au format) and returns
      * them as a double array with values between -1.0 and +1.0.
      *
-     * @param  filename the name of the audio file
+     * @param filename the name of the audio file
      * @return the array of samples
      */
     public static double[] read(String filename) {
@@ -159,7 +164,7 @@ public final class StdAudio {
         int N = data.length;
         double[] d = new double[N / 2];
         for (int i = 0; i < N / 2; i++) {
-            d[i] = ((short) (((data[2 * i + 1] & 0xFF) << 8) + (data[2 * i] & 0xFF))) / ((double) MAX_16_BIT);
+            d[i] = ((short) (((data[2 * i + 1] & 0xFF) << 8) + (data[2 * i] & 0xFF))) / MAX_16_BIT;
         }
         return d;
     }
@@ -190,7 +195,7 @@ public final class StdAudio {
     /**
      * Plays an audio file (in .wav, .mid, or .au format) in a loop in a background thread.
      *
-     * @param  filename the name of the audio file
+     * @param filename the name of the audio file
      */
     public static void loop(String filename) {
         URL url = null;
@@ -245,8 +250,8 @@ public final class StdAudio {
     /**
      * Saves the double array as an audio file (using .wav or .au format).
      *
-     * @param  filename the name of the audio file
-     * @param  samples the array of samples
+     * @param filename the name of the audio file
+     * @param samples  the array of samples
      */
     public static void save(String filename, double[] samples) {
 
@@ -320,25 +325,25 @@ public final class StdAudio {
 }
 
 /******************************************************************************
- *  Copyright 2002-2015, Robert Sedgewick and Kevin Wayne.
+ * Copyright 2002-2015, Robert Sedgewick and Kevin Wayne.
  *
- *  This file is part of algs4.jar, which accompanies the textbook
+ * This file is part of algs4.jar, which accompanies the textbook
  *
- *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
- *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
- *      http://algs4.cs.princeton.edu
+ * Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
+ * Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
+ * http://algs4.cs.princeton.edu
  *
  *
- *  algs4.jar is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * algs4.jar is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  algs4.jar is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * algs4.jar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
+ * You should have received a copy of the GNU General Public License
+ * along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

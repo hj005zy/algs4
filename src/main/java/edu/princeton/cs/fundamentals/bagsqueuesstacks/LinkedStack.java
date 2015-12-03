@@ -36,16 +36,19 @@ import java.util.NoSuchElementException;
  * For additional documentation,
  * see <a href="http://algs4.cs.princeton.edu/13stacks">Section 1.3</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
 public class LinkedStack<Item> implements Iterable<Item> {
     private int N;          // size of the stack
+
     private Node first;     // top of stack
 
     // helper linked list class
     private class Node {
         private Item item;
+
         private Node next;
     }
 
@@ -60,6 +63,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
     /**
      * Is this stack empty?
+     *
      * @return true if this stack is empty; false otherwise
      */
     public boolean isEmpty() {
@@ -68,6 +72,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
     /**
      * Returns the number of items in the stack.
+     *
      * @return the number of items in the stack
      */
     public int size() {
@@ -76,6 +81,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
     /**
      * Adds the item to this stack.
+     *
      * @param item the item to add
      */
     public void push(Item item) {
@@ -89,6 +95,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
     /**
      * Removes and returns the item most recently added to this stack.
+     *
      * @return the item most recently added
      * @throws NoSuchElementException if this stack is empty
      */
@@ -105,6 +112,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
     /**
      * Returns (but does not remove) the item most recently added to this stack.
+     *
      * @return the item most recently added to this stack
      * @throws NoSuchElementException if this stack is empty
      */
@@ -117,6 +125,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
     /**
      * Returns a string representation of this stack.
+     *
      * @return the sequence of items in the stack in LIFO order, separated by spaces
      */
     public String toString() {
@@ -129,8 +138,10 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
     /**
      * Returns an iterator to this stack that iterates through the items in LIFO order.
+     *
      * @return an iterator to this stack that iterates through the items in LIFO order.
      */
+    @Override
     public Iterator<Item> iterator() {
         return new ListIterator();
     }
@@ -139,14 +150,17 @@ public class LinkedStack<Item> implements Iterable<Item> {
     private class ListIterator implements Iterator<Item> {
         private Node current = first;
 
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
@@ -189,11 +203,8 @@ public class LinkedStack<Item> implements Iterable<Item> {
         for (Node x = first; x != null && numberOfNodes <= N; x = x.next) {
             numberOfNodes++;
         }
-        if (numberOfNodes != N) {
-            return false;
-        }
+        return numberOfNodes == N;
 
-        return true;
     }
 
     /**

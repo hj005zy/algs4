@@ -25,6 +25,7 @@ import java.util.NoSuchElementException;
 
 public class FixedCapacityStackOfStrings implements Iterable<String> {
     private String[] a;  // holds the items
+
     private int N;       // number of items in stack
 
     // create an empty stack with given capacity
@@ -53,6 +54,7 @@ public class FixedCapacityStackOfStrings implements Iterable<String> {
         return a[N - 1];
     }
 
+    @Override
     public Iterator<String> iterator() {
         return new ReverseArrayIterator();
     }
@@ -60,10 +62,12 @@ public class FixedCapacityStackOfStrings implements Iterable<String> {
     public class ReverseArrayIterator implements Iterator<String> {
         private int i = N - 1;
 
+        @Override
         public boolean hasNext() {
             return i >= 0;
         }
 
+        @Override
         public String next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
@@ -71,6 +75,7 @@ public class FixedCapacityStackOfStrings implements Iterable<String> {
             return a[i--];
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }

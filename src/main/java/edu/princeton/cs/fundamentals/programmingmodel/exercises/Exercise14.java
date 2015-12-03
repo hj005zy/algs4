@@ -9,7 +9,6 @@ public class Exercise14 {
         int result = 0;
         n /= 2;
         for (; n != 0; n /= 2, result++) {
-            ;
         }
         return result;
     }

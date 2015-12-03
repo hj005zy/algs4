@@ -17,6 +17,7 @@ import edu.princeton.cs.util.StdOut;
  * For additional documentation,
  * see <a href="http://algs4.cs.princeton.edu/12oop">Section 1.2</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
@@ -24,11 +25,14 @@ public class Date implements Comparable<Date> {
     private static final int[] DAYS = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     private final int month;   // month (between 1 and 12)
+
     private final int day;     // day   (between 1 and DAYS[month]
+
     private final int year;    // year
 
     /**
      * Initializes a new date from the month, day, and year.
+     *
      * @param month the month (between 1 and 12)
      * @param day   the day (between 1 and 28-31, depending on the month)
      * @param year  the year
@@ -45,6 +49,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Initializes new date specified as a string in form MM/DD/YYYY.
+     *
      * @param date the string representation of this date
      * @throws IllegalArgumentException if this date is invalid
      */
@@ -63,6 +68,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Return the month.
+     *
      * @return the month (an integer between 1 and 12)
      */
     public int month() {
@@ -71,6 +77,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Returns the day.
+     *
      * @return the day (an integer between 1 and 31)
      */
     public int day() {
@@ -79,6 +86,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Returns the year.
+     *
      * @return the year
      */
     public int year() {
@@ -93,10 +101,7 @@ public class Date implements Comparable<Date> {
         if (d < 1 || d > DAYS[m]) {
             return false;
         }
-        if (m == 2 && d == 29 && !isLeapYear(y)) {
-            return false;
-        }
-        return true;
+        return !(m == 2 && d == 29 && !isLeapYear(y));
     }
 
     // is y a leap year?
@@ -112,6 +117,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Returns the next date in the calendar.
+     *
      * @return a date that represents the next day after this day
      */
     public Date next() {
@@ -126,6 +132,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Compares two dates chronologically.
+     *
      * @param that the other date
      * @return <tt>true</tt> if this date is after that date; <tt>false</tt> otherwise
      */
@@ -135,6 +142,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Compares two dates chronologically.
+     *
      * @param that the other date
      * @return <tt>true</tt> if this date is before that date; <tt>false</tt> otherwise
      */
@@ -144,6 +152,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Compares two dates chronologically.
+     *
      * @return the value <tt>0</tt> if the argument date is equal to this date;
      * a negative integer if this date is chronologically less than
      * the argument date; and a positive ineger if this date is chronologically
@@ -174,6 +183,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Returns a string representation of this date.
+     *
      * @return the string representation in the format MM/DD/YYYY
      */
     @Override
@@ -183,6 +193,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Compares this date to the specified date.
+     *
      * @param other the other date
      * @return <tt>true</tt> if this date equals <tt>other</tt>; <tt>false</tt> otherwise
      */
@@ -203,6 +214,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Returns an integer hash code for this date.
+     *
      * @return a hash code for this date
      */
     @Override

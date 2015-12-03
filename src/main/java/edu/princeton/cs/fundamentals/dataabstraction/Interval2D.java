@@ -25,15 +25,18 @@ import edu.princeton.cs.util.StdRandom;
  * For additional documentation,
  * see <a href="http://algs4.cs.princeton.edu/12oop">Section 1.2</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
 public class Interval2D {
     private final Interval1D x;
+
     private final Interval1D y;
 
     /**
      * Initializes a two-dimensional interval.
+     *
      * @param x the one-dimensional interval of x-coordinates
      * @param y the one-dimensional interval of y-coordinates
      */
@@ -44,6 +47,7 @@ public class Interval2D {
 
     /**
      * Does this two-dimensional interval intersect that two-dimensional interval?
+     *
      * @param that the other two-dimensional interval
      * @return true if this two-dimensional interval intersects
      * that two-dimensional interval; false otherwise
@@ -52,14 +56,12 @@ public class Interval2D {
         if (!this.x.intersects(that.x)) {
             return false;
         }
-        if (!this.y.intersects(that.y)) {
-            return false;
-        }
-        return true;
+        return this.y.intersects(that.y);
     }
 
     /**
      * Does this two-dimensional interval contain the point p?
+     *
      * @param p the two-dimensional point
      * @return true if this two-dimensional interval contains the point p; false otherwise
      */
@@ -69,6 +71,7 @@ public class Interval2D {
 
     /**
      * Does the two-dimensional interval is contained in this two-dimensional interval?
+     *
      * @param other the another two-dimensional interval
      * @return true if the two-dimensional interval contains this two-dimensional interval;
      * false otherwise
@@ -80,6 +83,7 @@ public class Interval2D {
 
     /**
      * Returns the area of this two-dimensional interval.
+     *
      * @return the area of this two-dimensional interval
      */
     public double area() {
@@ -88,6 +92,7 @@ public class Interval2D {
 
     /**
      * Returns a string representation of this two-dimensional interval.
+     *
      * @return a string representation of this two-dimensional interval
      * in the form [xleft, xright] x [yleft, yright]
      */
@@ -97,6 +102,7 @@ public class Interval2D {
 
     /**
      * Does this interval equal the other interval?
+     *
      * @param other the other interval
      * @return true if this interval equals the other interval; false otherwise
      */
@@ -116,6 +122,7 @@ public class Interval2D {
 
     /**
      * Returns an integer hash code for this interval.
+     *
      * @return an integer hash code for this interval
      */
     public int hashCode() {
