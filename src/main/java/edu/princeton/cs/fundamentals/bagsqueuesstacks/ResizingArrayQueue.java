@@ -1,5 +1,3 @@
-package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise14;
-
 /******************************************************************************
  * Compilation:  javac ResizingArrayQueue.java
  * Execution:    java ResizingArrayQueue < input.txt
@@ -11,6 +9,8 @@ package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise14;
  * % java ResizingArrayQueue < tobe.txt
  * to be or not to be (2 left on queue)
  ******************************************************************************/
+
+package edu.princeton.cs.fundamentals.bagsqueuesstacks;
 
 import edu.princeton.cs.util.StdIn;
 import edu.princeton.cs.util.StdOut;
@@ -39,23 +39,20 @@ import java.util.NoSuchElementException;
  * @author Kevin Wayne
  */
 public class ResizingArrayQueue<Item> implements Iterable<Item> {
-    private Item[] q;       // queue elements
+    private Item[] q;            // queue elements
 
-    private int N;          // number of elements on queue
+    private int N = 0;           // number of elements on queue
 
-    private int first;      // index of first element of queue
+    private int first = 0;       // index of first element of queue
 
-    private int last;       // index of next available slot
+    private int last = 0;       // index of next available slot
 
     /**
      * Initializes an empty queue.
      */
-    @SuppressWarnings("unchecked")
     public ResizingArrayQueue() {
+        // cast needed since no generic array creation in Java
         q = (Item[]) new Object[2];
-        N = 0;
-        first = 0;
-        last = 0;
     }
 
     /**
@@ -77,7 +74,6 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
     }
 
     // resize the underlying array
-    @SuppressWarnings("unchecked")
     private void resize(int max) {
         assert max >= N;
         Item[] temp = (Item[]) new Object[max];
@@ -97,11 +93,11 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
     public void enqueue(Item item) {
         // double size of array if necessary and recopy to front of array
         if (N == q.length) {
-            resize(2 * q.length); // double size of array if necessary
+            resize(2 * q.length);   // double size of array if necessary
         }
-        q[last++] = item; // add item
+        q[last++] = item;                        // add item
         if (last == q.length) {
-            last = 0; // wrap-around
+            last = 0;          // wrap-around
         }
         N++;
     }
@@ -110,18 +106,18 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
      * Removes and returns the item on this queue that was least recently added.
      *
      * @return the item on this queue that was least recently added
-     * @throws java.util.NoSuchElementException if this queue is empty
+     * @throws NoSuchElementException if this queue is empty
      */
     public Item dequeue() {
         if (isEmpty()) {
             throw new NoSuchElementException("Queue underflow");
         }
         Item item = q[first];
-        q[first] = null; // to avoid loitering
+        q[first] = null;                            // to avoid loitering
         N--;
         first++;
         if (first == q.length) {
-            first = 0; // wrap-around
+            first = 0;           // wrap-around
         }
         // shrink size of array if necessary
         if (N > 0 && N == q.length / 4) {
@@ -134,7 +130,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
      * Returns the item least recently added to this queue.
      *
      * @return the item least recently added to this queue
-     * @throws java.util.NoSuchElementException if this queue is empty
+     * @throws NoSuchElementException if this queue is empty
      */
     public Item peek() {
         if (isEmpty()) {
@@ -183,7 +179,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
      */
     public static void main(String[] args) {
         ResizingArrayQueue<String> q = new ResizingArrayQueue<>();
-        while (StdIn.isEmpty()) {
+        while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
             if (!"-".equals(item)) {
                 q.enqueue(item);
@@ -193,4 +189,29 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
         }
         StdOut.println("(" + q.size() + " left on queue)");
     }
+
 }
+
+/******************************************************************************
+ * Copyright 2002-2015, Robert Sedgewick and Kevin Wayne.
+ *
+ * This file is part of algs4.jar, which accompanies the textbook
+ *
+ * Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
+ * Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
+ * http://algs4.cs.princeton.edu
+ *
+ *
+ * algs4.jar is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * algs4.jar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with algs4.jar.  If not, see http://www.gnu.org/licenses.
+ ******************************************************************************/
