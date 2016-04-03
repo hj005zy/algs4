@@ -60,8 +60,9 @@ import java.util.Random;
  */
 public final class StdRandom {
 
-    private static Random random;    // pseudo-random number generator
-    private static long seed;        // pseudo-random number generator seed
+    private static Random random; // pseudo-random number generator
+
+    private static long seed; // pseudo-random number generator seed
 
     // static initializer
     static {
@@ -127,6 +128,7 @@ public final class StdRandom {
      * @return a random real number uniformly in [0, 1)
      * @deprecated Replaced by {@link #uniform()}.
      */
+    @Deprecated
     public static double random() {
         return uniform();
     }
@@ -357,7 +359,7 @@ public final class StdRandom {
     public static void shuffle(Object[] a) {
         int N = a.length;
         for (int i = 0; i < N; i++) {
-            int r = i + uniform(N - i);     // between i and N-1
+            int r = i + uniform(N - i); // between i and N-1
             Object temp = a[i];
             a[i] = a[r];
             a[r] = temp;
@@ -372,7 +374,7 @@ public final class StdRandom {
     public static void shuffle(double[] a) {
         int N = a.length;
         for (int i = 0; i < N; i++) {
-            int r = i + uniform(N - i);     // between i and N-1
+            int r = i + uniform(N - i); // between i and N-1
             double temp = a[i];
             a[i] = a[r];
             a[r] = temp;
@@ -387,7 +389,7 @@ public final class StdRandom {
     public static void shuffle(int[] a) {
         int N = a.length;
         for (int i = 0; i < N; i++) {
-            int r = i + uniform(N - i);     // between i and N-1
+            int r = i + uniform(N - i); // between i and N-1
             int temp = a[i];
             a[i] = a[r];
             a[r] = temp;
@@ -407,7 +409,7 @@ public final class StdRandom {
             throw new IndexOutOfBoundsException("Illegal subarray range");
         }
         for (int i = lo; i <= hi; i++) {
-            int r = i + uniform(hi - i + 1);     // between i and hi
+            int r = i + uniform(hi - i + 1); // between i and hi
             Object temp = a[i];
             a[i] = a[r];
             a[r] = temp;
@@ -426,7 +428,7 @@ public final class StdRandom {
             throw new IndexOutOfBoundsException("Illegal subarray range");
         }
         for (int i = lo; i <= hi; i++) {
-            int r = i + uniform(hi - i + 1);     // between i and hi
+            int r = i + uniform(hi - i + 1); // between i and hi
             double temp = a[i];
             a[i] = a[r];
             a[r] = temp;
@@ -445,7 +447,7 @@ public final class StdRandom {
             throw new IndexOutOfBoundsException("Illegal subarray range");
         }
         for (int i = lo; i <= hi; i++) {
-            int r = i + uniform(hi - i + 1);     // between i and hi
+            int r = i + uniform(hi - i + 1); // between i and hi
             int temp = a[i];
             a[i] = a[r];
             a[r] = temp;
@@ -460,7 +462,7 @@ public final class StdRandom {
         if (args.length == 2) {
             StdRandom.setSeed(Long.parseLong(args[1]));
         }
-        double[] t = {.5, .3, .1, .1};
+        double[] t = { .5, .3, .1, .1 };
 
         StdOut.println("seed = " + StdRandom.getSeed());
         for (int i = 0; i < N; i++) {

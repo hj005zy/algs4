@@ -1,10 +1,10 @@
 package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise29;
 
-import edu.princeton.cs.util.StdIn;
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdIn;
+import edu.princeton.cs.util.StdOut;
 
 public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
@@ -14,6 +14,7 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
     // helper linked list class
     private class Node {
+
         private Item item;
 
         private Node next;
@@ -176,6 +177,7 @@ public class CircularLinkedQueue<Item> implements Iterable<Item> {
 
     // an iterator, doesn't implement remove() since it's optional
     private class ListIterator implements Iterator<Item> {
+
         private Node current = last == null ? null : last.next;
 
         private int index = 0;

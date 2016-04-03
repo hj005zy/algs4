@@ -35,11 +35,12 @@ import edu.princeton.cs.util.StdOut;
  * @author Kevin Wayne
  */
 public class Accumulator {
-    private int n = 0;          // number of data values
 
-    private double sum = 0.0;   // sample variance * (n-1)
+    private int n = 0; // number of data values
 
-    private double mu = 0.0;    // sample mean
+    private double sum = 0.0; // sample variance * (n-1)
+
+    private double mu = 0.0; // sample mean
 
     /**
      * Initializes an accumulator.

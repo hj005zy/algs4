@@ -41,7 +41,7 @@ public class Exercise33 {
     }
 
     public static double[] mult(double[] x, double[][] a) {
-        double[][] b = new double[][]{x};
+        double[][] b = new double[][] { x };
         return mult(b, a)[0];
     }
 
@@ -58,15 +58,14 @@ public class Exercise33 {
         return transpose;
     }
 
-    @SuppressWarnings("SuspiciousNameCombination")
     public static void main(String[] args) {
 
-        double[] x = {1, 2, 3};
-        double[] y = {4, 5, 6};
+        double[] x = { 1, 2, 3 };
+        double[] y = { 4, 5, 6 };
         System.out.println(dot(x, y));
 
-        double[][] a = {{1, 2, 3}, {4, 5, 6}};
-        double[][] b = {{1, 4}, {2, 5}, {3, 6}};
+        double[][] a = { { 1, 2, 3 }, { 4, 5, 6 } };
+        double[][] b = { { 1, 4 }, { 2, 5 }, { 3, 6 } };
         System.out.println(Arrays.deepToString(mult(a, b)));
         System.out.println(Arrays.deepToString(transpose(a)));
 

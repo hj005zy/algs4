@@ -14,6 +14,14 @@
 
 package edu.princeton.cs.util;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -22,13 +30,6 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.applet.Applet;
-import java.applet.AudioClip;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * <i>Standard audio</i>. This class provides a basic capability for
@@ -50,19 +51,19 @@ public final class StdAudio {
      */
     public static final int SAMPLE_RATE = 44100;
 
-    private static final int BYTES_PER_SAMPLE = 2;                // 16-bit audio
+    private static final int BYTES_PER_SAMPLE = 2; // 16-bit audio
 
-    private static final int BITS_PER_SAMPLE = 16;                // 16-bit audio
+    private static final int BITS_PER_SAMPLE = 16; // 16-bit audio
 
-    private static final double MAX_16_BIT = Short.MAX_VALUE;     // 32,767
+    private static final double MAX_16_BIT = Short.MAX_VALUE; // 32,767
 
     private static final int SAMPLE_BUFFER_SIZE = 4096;
 
-    private static SourceDataLine line;   // to play the sound
+    private static SourceDataLine line; // to play the sound
 
-    private static byte[] buffer;         // our internal buffer
+    private static byte[] buffer; // our internal buffer
 
-    private static int bufferSize = 0;    // number of samples currently in internal buffer
+    private static int bufferSize = 0; // number of samples currently in internal buffer
 
     private StdAudio() {
         // can not instantiate
@@ -77,7 +78,7 @@ public final class StdAudio {
     private static void init() {
         try {
             // 44,100 samples per second, 16-bit audio, mono, signed PCM, little Endian
-            AudioFormat format = new AudioFormat((float) SAMPLE_RATE, BITS_PER_SAMPLE, 1, true, false);
+            AudioFormat format = new AudioFormat(SAMPLE_RATE, BITS_PER_SAMPLE, 1, true, false);
             DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
 
             line = (SourceDataLine) AudioSystem.getLine(info);
@@ -127,9 +128,9 @@ public final class StdAudio {
         // convert to bytes
         short s = (short) (MAX_16_BIT * sample);
         buffer[bufferSize++] = (byte) s;
-        buffer[bufferSize++] = (byte) (s >> 8);   // little Endian
+        buffer[bufferSize++] = (byte) (s >> 8); // little Endian
 
-        // send to sound card if buffer is full        
+        // send to sound card if buffer is full
         if (bufferSize >= buffer.length) {
             line.write(buffer, 0, buffer.length);
             bufferSize = 0;
@@ -309,7 +310,7 @@ public final class StdAudio {
         }
 
         // scale increments
-        int[] steps = {0, 2, 4, 5, 7, 9, 11, 12};
+        int[] steps = { 0, 2, 4, 5, 7, 9, 11, 12 };
         for (int step : steps) {
             double hz = 440.0 * Math.pow(2, step / 12.0);
             StdAudio.play(note(hz, 1.0, 0.5));

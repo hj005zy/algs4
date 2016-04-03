@@ -31,7 +31,7 @@ public class Exercise37 {
     public static void badShuffle(int[] a) {
         int N = a.length;
         for (int i = 0; i < N; i++) {
-            int r = StdRandom.uniform(N);     // between 0 and N-1
+            int r = StdRandom.uniform(N); // between 0 and N-1
             int temp = a[i];
             a[i] = a[r];
             a[r] = temp;

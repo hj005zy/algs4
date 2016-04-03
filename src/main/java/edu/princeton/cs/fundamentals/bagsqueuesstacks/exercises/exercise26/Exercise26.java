@@ -1,9 +1,9 @@
 package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise26;
 
+import java.util.Objects;
+
 import edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.Node;
 import edu.princeton.cs.util.StdOut;
-
-import java.util.Objects;
 
 public class Exercise26 {
 

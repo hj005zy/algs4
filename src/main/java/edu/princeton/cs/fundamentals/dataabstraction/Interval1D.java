@@ -8,10 +8,10 @@
 
 package edu.princeton.cs.fundamentals.dataabstraction;
 
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Arrays;
 import java.util.Comparator;
+
+import edu.princeton.cs.util.StdOut;
 
 /**
  * The <tt>Interval1D</tt> class represents a one-dimensional interval.
@@ -180,6 +180,7 @@ public class Interval1D {
 
     // ascending order of left endpoint, breaking ties by right endpoint
     private static class LeftComparator implements Comparator<Interval1D> {
+
         @Override
         public int compare(Interval1D a, Interval1D b) {
             if (a.left < b.left) {
@@ -198,6 +199,7 @@ public class Interval1D {
 
     // ascending order of right endpoint, breaking ties by left endpoint
     private static class RightComparator implements Comparator<Interval1D> {
+
         @Override
         public int compare(Interval1D a, Interval1D b) {
             if (a.right < b.right) {
@@ -216,6 +218,7 @@ public class Interval1D {
 
     // ascending order of length
     private static class LengthComparator implements Comparator<Interval1D> {
+
         @Override
         public int compare(Interval1D a, Interval1D b) {
             double alen = a.length();

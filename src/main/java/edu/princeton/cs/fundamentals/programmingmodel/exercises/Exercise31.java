@@ -1,10 +1,10 @@
 package edu.princeton.cs.fundamentals.programmingmodel.exercises;
 
+import java.awt.Color;
+import java.awt.geom.Point2D;
+
 import edu.princeton.cs.util.StdDraw;
 import edu.princeton.cs.util.StdRandom;
-
-import java.awt.*;
-import java.awt.geom.Point2D;
 
 public class Exercise31 {
 

@@ -34,9 +34,9 @@ import edu.princeton.cs.util.StdRandom;
  */
 public class Counter implements Comparable<Counter> {
 
-    private final String name;     // counter name
+    private final String name; // counter name
 
-    private int count = 0;         // current value
+    private int count = 0; // current value
 
     /**
      * Initializes a new counter starting at 0, with the given id.

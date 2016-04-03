@@ -1,10 +1,10 @@
 package edu.princeton.cs.fundamentals.programmingmodel.exercises;
 
+import java.util.Arrays;
+
 import edu.princeton.cs.fundamentals.programmingmodel.BinarySearch;
 import edu.princeton.cs.util.StdOut;
 import edu.princeton.cs.util.StdRandom;
-
-import java.util.Arrays;
 
 public class Exercise39 {
 
@@ -44,7 +44,7 @@ public class Exercise39 {
     public static void main(String[] args) {
         int t = Integer.valueOf(args[0]);
 
-        int[] ns = {1000, 10000, 100000, 1000000};
+        int[] ns = { 1000, 10000, 100000, 1000000 };
         for (int n : ns) {
             caculate(t, n);
         }

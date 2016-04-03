@@ -12,11 +12,11 @@
 
 package edu.princeton.cs.fundamentals.bagsqueuesstacks;
 
-import edu.princeton.cs.util.StdIn;
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdIn;
+import edu.princeton.cs.util.StdOut;
 
 /**
  * The <tt>Queue</tt> class represents a first-in-first-out (FIFO)
@@ -40,14 +40,16 @@ import java.util.NoSuchElementException;
  * @author Kevin Wayne
  */
 public class Queue<Item> implements Iterable<Item> {
-    private int N;               // number of elements on queue
 
-    private Node<Item> first;    // beginning of queue
+    private int N; // number of elements on queue
 
-    private Node<Item> last;     // end of queue
+    private Node<Item> first; // beginning of queue
+
+    private Node<Item> last; // end of queue
 
     // helper linked list class
     private static class Node<Item> {
+
         private Item item;
 
         private Node<Item> next;
@@ -125,7 +127,7 @@ public class Queue<Item> implements Iterable<Item> {
         first = first.next;
         N--;
         if (isEmpty()) {
-            last = null;   // to avoid loitering
+            last = null; // to avoid loitering
         }
         return item;
     }
@@ -155,7 +157,9 @@ public class Queue<Item> implements Iterable<Item> {
     }
 
     // an iterator, doesn't implement remove() since it's optional
+    @SuppressWarnings("hiding")
     private class ListIterator<Item> implements Iterator<Item> {
+
         private Node<Item> current;
 
         public ListIterator(Node<Item> first) {

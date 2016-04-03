@@ -1,8 +1,8 @@
 package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise38;
 
-import edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.Node;
-
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.Node;
 
 public class LinkedGeneralizedQueue<Item> {
 

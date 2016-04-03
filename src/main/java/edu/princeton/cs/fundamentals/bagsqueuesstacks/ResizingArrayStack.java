@@ -15,11 +15,11 @@
 
 package edu.princeton.cs.fundamentals.bagsqueuesstacks;
 
-import edu.princeton.cs.util.StdIn;
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdIn;
+import edu.princeton.cs.util.StdOut;
 
 /**
  * The <tt>ResizingArrayStack</tt> class represents a last-in-first-out (LIFO) stack
@@ -42,13 +42,15 @@ import java.util.NoSuchElementException;
  * @author Kevin Wayne
  */
 public class ResizingArrayStack<Item> implements Iterable<Item> {
-    private Item[] a;         // array of items
 
-    private int N;            // number of elements on stack
+    private Item[] a; // array of items
+
+    private int N; // number of elements on stack
 
     /**
      * Initializes an empty stack.
      */
+    @SuppressWarnings("unchecked")
     public ResizingArrayStack() {
         a = (Item[]) new Object[2];
     }
@@ -74,6 +76,7 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
     // resize the underlying array holding the elements
     private void resize(int capacity) {
         assert capacity >= N;
+        @SuppressWarnings("unchecked")
         Item[] temp = (Item[]) new Object[capacity];
         for (int i = 0; i < N; i++) {
             temp[i] = a[i];
@@ -88,9 +91,9 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
      */
     public void push(Item item) {
         if (N == a.length) {
-            resize(2 * a.length);    // double size of array if necessary
+            resize(2 * a.length); // double size of array if necessary
         }
-        a[N++] = item;                            // add item
+        a[N++] = item; // add item
     }
 
     /**
@@ -139,6 +142,7 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
 
     // an iterator, doesn't implement remove() since it's optional
     private class ReverseArrayIterator implements Iterator<Item> {
+
         private int i;
 
         public ReverseArrayIterator() {

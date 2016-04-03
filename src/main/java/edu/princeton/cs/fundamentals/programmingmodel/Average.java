@@ -41,8 +41,8 @@ public class Average {
      * out their average to standard output.
      */
     public static void main(String[] args) {
-        int count = 0;       // number input values
-        double sum = 0.0;    // sum of input values
+        int count = 0; // number input values
+        double sum = 0.0; // sum of input values
 
         // read data and compute statistics
         while (StdIn.isEmpty()) {

@@ -19,11 +19,11 @@
 
 package edu.princeton.cs.fundamentals.bagsqueuesstacks;
 
-import edu.princeton.cs.util.StdIn;
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdIn;
+import edu.princeton.cs.util.StdOut;
 
 /**
  * The <tt>Stack</tt> class represents a last-in-first-out (LIFO) stack of generic items.
@@ -46,12 +46,14 @@ import java.util.NoSuchElementException;
  * @author Kevin Wayne
  */
 public class Stack<Item> implements Iterable<Item> {
-    private int N;                // size of the stack
 
-    private Node<Item> first;     // top of stack
+    private int N; // size of the stack
+
+    private Node<Item> first; // top of stack
 
     // helper linked list class
     private static class Node<Item> {
+
         private Item item;
 
         private Node<Item> next;
@@ -106,10 +108,10 @@ public class Stack<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new NoSuchElementException("Stack underflow");
         }
-        Item item = first.item;        // save item to return
-        first = first.next;            // delete first node
+        Item item = first.item; // save item to return
+        first = first.next; // delete first node
         N--;
-        return item;                   // return the saved item
+        return item; // return the saved item
     }
 
     /**
@@ -150,7 +152,9 @@ public class Stack<Item> implements Iterable<Item> {
     }
 
     // an iterator, doesn't implement remove() since it's optional
+    @SuppressWarnings("hiding")
     private class ListIterator<Item> implements Iterator<Item> {
+
         private Node<Item> current;
 
         public ListIterator(Node<Item> first) {

@@ -25,9 +25,16 @@
 
 package edu.princeton.cs.util;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.FileDialog;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -48,6 +55,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.TreeSet;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 
 /**
  * <i>Standard draw</i>. This class provides a basic capability for
@@ -277,8 +294,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         clear();
 
         // add antialiasing
-        RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+        RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         offscreen.addRenderingHints(hints);
 
@@ -290,9 +306,9 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         draw.addMouseMotionListener(std);
 
         frame.setContentPane(draw);
-        frame.addKeyListener(std);    // JLabel cannot get keyboard focus
+        frame.addKeyListener(std); // JLabel cannot get keyboard focus
         frame.setResizable(false);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);            // closes all windows
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // closes all windows
         // frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // closes only current window
         frame.setTitle("Standard Draw");
         frame.setJMenuBar(createMenuBar());
@@ -308,8 +324,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         menuBar.add(menu);
         JMenuItem menuItem1 = new JMenuItem(" Save...   ");
         menuItem1.addActionListener(std);
-        menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
-                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         menu.add(menuItem1);
         return menuBar;
     }
@@ -584,8 +599,8 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         if (scaledPenRadius <= 1) {
             pixel(x, y);
         } else {
-            offscreen.fill(new Ellipse2D.Double(xs - scaledPenRadius / 2, ys - scaledPenRadius / 2,
-                    scaledPenRadius, scaledPenRadius));
+            offscreen.fill(
+                    new Ellipse2D.Double(xs - scaledPenRadius / 2, ys - scaledPenRadius / 2, scaledPenRadius, scaledPenRadius));
         }
         draw();
     }
@@ -982,9 +997,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         if (ws <= 1 && hs <= 1) {
             pixel(x, y);
         } else {
-            offscreen.drawImage(image, (int) Math.round(xs - ws / 2.0),
-                    (int) Math.round(ys - hs / 2.0),
-                    (int) Math.round(ws),
+            offscreen.drawImage(image, (int) Math.round(xs - ws / 2.0), (int) Math.round(ys - hs / 2.0), (int) Math.round(ws),
                     (int) Math.round(hs), null);
         }
         draw();
@@ -1016,9 +1029,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         }
 
         offscreen.rotate(Math.toRadians(-degrees), xs, ys);
-        offscreen.drawImage(image, (int) Math.round(xs - ws / 2.0),
-                (int) Math.round(ys - hs / 2.0),
-                (int) Math.round(ws),
+        offscreen.drawImage(image, (int) Math.round(xs - ws / 2.0), (int) Math.round(ys - hs / 2.0), (int) Math.round(ws),
                 (int) Math.round(hs), null);
         offscreen.rotate(Math.toRadians(+degrees), xs, ys);
 
@@ -1180,11 +1191,9 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         else if ("jpg".equals(suffix.toLowerCase())) {
             WritableRaster raster = onscreenImage.getRaster();
             WritableRaster newRaster;
-            newRaster = raster.createWritableChild(0, 0, width, height, 0, 0, new int[]{0, 1, 2});
+            newRaster = raster.createWritableChild(0, 0, width, height, 0, 0, new int[] { 0, 1, 2 });
             DirectColorModel cm = (DirectColorModel) onscreenImage.getColorModel();
-            DirectColorModel newCM = new DirectColorModel(cm.getPixelSize(),
-                    cm.getRedMask(),
-                    cm.getGreenMask(),
+            DirectColorModel newCM = new DirectColorModel(cm.getPixelSize(), cm.getRedMask(), cm.getGreenMask(),
                     cm.getBlueMask());
             BufferedImage rgbBuffer = new BufferedImage(newCM, newRaster, false, null);
             try {
@@ -1406,8 +1415,8 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         // draw a blue diamond
         StdDraw.setPenRadius();
         StdDraw.setPenColor(StdDraw.BOOK_BLUE);
-        double[] x = {.1, .2, .3, .2};
-        double[] y = {.2, .3, .2, .1};
+        double[] x = { .1, .2, .3, .2 };
+        double[] y = { .2, .3, .2, .1 };
         StdDraw.filledPolygon(x, y);
 
         // text

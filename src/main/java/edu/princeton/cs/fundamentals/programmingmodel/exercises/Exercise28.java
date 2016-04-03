@@ -1,11 +1,11 @@
 package edu.princeton.cs.fundamentals.programmingmodel.exercises;
 
+import java.util.Arrays;
+
 import edu.princeton.cs.fundamentals.programmingmodel.BinarySearch;
 import edu.princeton.cs.util.In;
 import edu.princeton.cs.util.StdIn;
 import edu.princeton.cs.util.StdOut;
-
-import java.util.Arrays;
 
 public class Exercise28 {
 

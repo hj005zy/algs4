@@ -20,7 +20,7 @@ public class Exercise15 {
     }
 
     public static void main(String[] args) {
-        int[] a = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5};
+        int[] a = { 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 };
         int[] histogram = histogram(a, 6);
         for (int n : histogram) {
             System.out.println(n);

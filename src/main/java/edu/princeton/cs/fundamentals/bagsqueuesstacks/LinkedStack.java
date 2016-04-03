@@ -15,11 +15,11 @@
 
 package edu.princeton.cs.fundamentals.bagsqueuesstacks;
 
-import edu.princeton.cs.util.StdIn;
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdIn;
+import edu.princeton.cs.util.StdOut;
 
 /**
  * The <tt>LinkedStack</tt> class represents a last-in-first-out (LIFO) stack of
@@ -41,12 +41,14 @@ import java.util.NoSuchElementException;
  * @author Kevin Wayne
  */
 public class LinkedStack<Item> implements Iterable<Item> {
-    private int N;          // size of the stack
 
-    private Node first;     // top of stack
+    private int N; // size of the stack
+
+    private Node first; // top of stack
 
     // helper linked list class
     private class Node {
+
         private Item item;
 
         private Node next;
@@ -103,11 +105,11 @@ public class LinkedStack<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new NoSuchElementException("Stack underflow");
         }
-        Item item = first.item;        // save item to return
-        first = first.next;            // delete first node
+        Item item = first.item; // save item to return
+        first = first.next; // delete first node
         N--;
         assert check();
-        return item;                   // return the saved item
+        return item; // return the saved item
     }
 
     /**
@@ -149,6 +151,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
     // an iterator, doesn't implement remove() since it's optional
     private class ListIterator implements Iterator<Item> {
+
         private Node current = first;
 
         @Override

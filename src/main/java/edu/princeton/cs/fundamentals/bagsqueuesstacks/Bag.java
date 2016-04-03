@@ -28,11 +28,11 @@
 
 package edu.princeton.cs.fundamentals.bagsqueuesstacks;
 
-import edu.princeton.cs.util.StdIn;
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdIn;
+import edu.princeton.cs.util.StdOut;
 
 /**
  * The <tt>Bag</tt> class represents a bag (or multiset) of
@@ -53,12 +53,14 @@ import java.util.NoSuchElementException;
  * @author Kevin Wayne
  */
 public class Bag<Item> implements Iterable<Item> {
-    private int N;               // number of elements in bag
 
-    private Node<Item> first;    // beginning of bag
+    private int N; // number of elements in bag
+
+    private Node<Item> first; // beginning of bag
 
     // helper linked list class
     private static class Node<Item> {
+
         private Item item;
 
         private Node<Item> next;
@@ -115,7 +117,9 @@ public class Bag<Item> implements Iterable<Item> {
     }
 
     // an iterator, doesn't implement remove() since it's optional
+    @SuppressWarnings("hiding")
     private class ListIterator<Item> implements Iterator<Item> {
+
         private Node<Item> current;
 
         public ListIterator(Node<Item> first) {

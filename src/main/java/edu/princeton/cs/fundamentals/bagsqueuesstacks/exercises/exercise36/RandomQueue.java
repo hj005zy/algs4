@@ -1,9 +1,9 @@
 package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise36;
 
-import edu.princeton.cs.util.StdRandom;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdRandom;
 
 public class RandomQueue<Item> implements Iterable<Item> {
 

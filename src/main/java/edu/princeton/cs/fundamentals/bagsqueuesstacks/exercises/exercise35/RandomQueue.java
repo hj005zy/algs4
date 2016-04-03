@@ -1,8 +1,8 @@
 package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise35;
 
-import edu.princeton.cs.util.StdRandom;
-
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdRandom;
 
 public class RandomQueue<Item> {
 

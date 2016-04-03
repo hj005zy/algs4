@@ -8,11 +8,11 @@
 
 package edu.princeton.cs.fundamentals.dataabstraction;
 
-import edu.princeton.cs.util.StdDraw;
-import edu.princeton.cs.util.StdRandom;
-
 import java.util.Arrays;
 import java.util.Comparator;
+
+import edu.princeton.cs.util.StdDraw;
+import edu.princeton.cs.util.StdRandom;
 
 /**
  * The <tt>Point</tt> class is an immutable data type to encapsulate a
@@ -46,9 +46,9 @@ public final class Point2D implements Comparable<Point2D> {
      */
     public static final Comparator<Point2D> R_ORDER = new ROrder();
 
-    private final double x;    // x coordinate
+    private final double x; // x coordinate
 
-    private final double y;    // y coordinate
+    private final double y; // y coordinate
 
     /**
      * Initializes a new point (x, y).
@@ -67,13 +67,13 @@ public final class Point2D implements Comparable<Point2D> {
             throw new IllegalArgumentException("Coordinates cannot be NaN");
         }
         if (x == 0.0) {
-            this.x = 0.0;  // convert -0.0 to +0.0
+            this.x = 0.0; // convert -0.0 to +0.0
         } else {
             this.x = x;
         }
 
         if (y == 0.0) {
-            this.y = 0.0;  // convert -0.0 to +0.0
+            this.y = 0.0; // convert -0.0 to +0.0
         } else {
             this.y = y;
         }
@@ -239,6 +239,7 @@ public final class Point2D implements Comparable<Point2D> {
 
     // compare points according to their x-coordinate
     private static class XOrder implements Comparator<Point2D> {
+
         @Override
         public int compare(Point2D p, Point2D q) {
             if (p.x < q.x) {
@@ -253,6 +254,7 @@ public final class Point2D implements Comparable<Point2D> {
 
     // compare points according to their y-coordinate
     private static class YOrder implements Comparator<Point2D> {
+
         @Override
         public int compare(Point2D p, Point2D q) {
             if (p.y < q.y) {
@@ -267,6 +269,7 @@ public final class Point2D implements Comparable<Point2D> {
 
     // compare points according to their polar radius
     private static class ROrder implements Comparator<Point2D> {
+
         @Override
         public int compare(Point2D p, Point2D q) {
             double delta = (p.x * p.x + p.y * p.y) - (q.x * q.x + q.y * q.y);
@@ -282,6 +285,7 @@ public final class Point2D implements Comparable<Point2D> {
 
     // compare other points relative to atan2 angle (bewteen -pi/2 and pi/2) they make with this Point
     private class Atan2Order implements Comparator<Point2D> {
+
         @Override
         public int compare(Point2D q1, Point2D q2) {
             double angle1 = angleTo(q1);
@@ -298,6 +302,7 @@ public final class Point2D implements Comparable<Point2D> {
 
     // compare other points relative to polar angle (between 0 and 2pi) they make with this Point
     private class PolarOrder implements Comparator<Point2D> {
+
         @Override
         public int compare(Point2D q1, Point2D q2) {
             double dx1 = q1.x - x;
@@ -306,10 +311,10 @@ public final class Point2D implements Comparable<Point2D> {
             double dy2 = q2.y - y;
 
             if (dy1 >= 0 && dy2 < 0) {
-                return -1;    // q1 above; q2 below
+                return -1; // q1 above; q2 below
             } else if (dy2 >= 0 && dy1 < 0) {
-                return +1;    // q1 below; q2 above
-            } else if (dy1 == 0 && dy2 == 0) {            // 3-collinear and horizontal
+                return +1; // q1 below; q2 above
+            } else if (dy1 == 0 && dy2 == 0) { // 3-collinear and horizontal
                 if (dx1 >= 0 && dx2 < 0) {
                     return -1;
                 } else if (dx2 >= 0 && dx1 < 0) {
@@ -318,7 +323,7 @@ public final class Point2D implements Comparable<Point2D> {
                     return 0;
                 }
             } else {
-                return -ccw(Point2D.this, q1, q2);     // both above or below
+                return -ccw(Point2D.this, q1, q2); // both above or below
             }
 
             // Note: ccw() recomputes dx1, dy1, dx2, and dy2
@@ -327,6 +332,7 @@ public final class Point2D implements Comparable<Point2D> {
 
     // compare points according to their distance to this point
     private class DistanceToOrder implements Comparator<Point2D> {
+
         @Override
         public int compare(Point2D p, Point2D q) {
             double dist1 = distanceSquaredTo(p);

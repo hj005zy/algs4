@@ -28,7 +28,7 @@ public class Node<Item> {
         Node<Item> next = null;
         Node<Item> cur = null;
         for (Item item : items) {
-            if (head == null) {
+            if (cur == null) {
                 head = new Node<>();
                 head.setItem(item);
                 cur = head;

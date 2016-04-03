@@ -30,6 +30,7 @@ import edu.princeton.cs.util.StdRandom;
  * @author Kevin Wayne
  */
 public class Interval2D {
+
     private final Interval1D x;
 
     private final Interval1D y;
@@ -77,8 +78,8 @@ public class Interval2D {
      * false otherwise
      */
     public boolean contains(Interval2D other) {
-        return this.x.contains(other.x.left()) && this.x.contains(other.x.right()) && this.y
-                .contains(other.y.left()) && this.y.contains(other.y.right());
+        return this.x.contains(other.x.left()) && this.x.contains(other.x.right()) && this.y.contains(other.y.left())
+                && this.y.contains(other.y.right());
     }
 
     /**

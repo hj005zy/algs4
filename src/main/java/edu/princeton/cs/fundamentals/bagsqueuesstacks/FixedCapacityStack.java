@@ -1,4 +1,4 @@
-package edu.princeton.cs.fundamentals.bagsqueuesstacks; /******************************************************************************
+/******************************************************************************
  * Compilation:  javac FixedCapacityStack.java
  * Execution:    java FixedCapacityStack
  * Dependencies: StdIn.java StdOut.java
@@ -15,20 +15,24 @@ package edu.princeton.cs.fundamentals.bagsqueuesstacks; /***********************
  * doubling or null out empty array entries to avoid loitering.
  ******************************************************************************/
 
-import edu.princeton.cs.util.StdIn;
-import edu.princeton.cs.util.StdOut;
+package edu.princeton.cs.fundamentals.bagsqueuesstacks;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class FixedCapacityStack<Item> implements Iterable<Item> {
-    private Item[] a;    // holds the items
+import edu.princeton.cs.util.StdIn;
+import edu.princeton.cs.util.StdOut;
 
-    private int N;       // number of items in stack
+public class FixedCapacityStack<Item> implements Iterable<Item> {
+
+    private Item[] a; // holds the items
+
+    private int N; // number of items in stack
 
     // create an empty stack with given capacity
+    @SuppressWarnings("unchecked")
     public FixedCapacityStack(int capacity) {
-        a = (Item[]) new Object[capacity];   // no generic array creation
+        a = (Item[]) new Object[capacity]; // no generic array creation
         N = 0;
     }
 
@@ -50,6 +54,7 @@ public class FixedCapacityStack<Item> implements Iterable<Item> {
     }
 
     public class ReverseArrayIterator implements Iterator<Item> {
+
         private int i = N - 1;
 
         @Override
@@ -93,4 +98,4 @@ public class FixedCapacityStack<Item> implements Iterable<Item> {
         }
         StdOut.println();
     }
-} 
+}

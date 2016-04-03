@@ -22,13 +22,14 @@ import edu.princeton.cs.util.StdOut;
  * @author Kevin Wayne
  */
 public class Date implements Comparable<Date> {
-    private static final int[] DAYS = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    private final int month;   // month (between 1 and 12)
+    private static final int[] DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-    private final int day;     // day   (between 1 and DAYS[month]
+    private final int month; // month (between 1 and 12)
 
-    private final int year;    // year
+    private final int day; // day   (between 1 and DAYS[month]
+
+    private final int year; // year
 
     /**
      * Initializes a new date from the month, day, and year.

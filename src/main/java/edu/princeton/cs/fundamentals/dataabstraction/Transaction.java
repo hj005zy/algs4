@@ -8,10 +8,10 @@
 
 package edu.princeton.cs.fundamentals.dataabstraction;
 
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Arrays;
 import java.util.Comparator;
+
+import edu.princeton.cs.util.StdOut;
 
 /**
  * The <tt>Transaction</tt> class is an immutable data type to encapsulate a
@@ -25,11 +25,12 @@ import java.util.Comparator;
  * @author Kevin Wayne
  */
 public class Transaction implements Comparable<Transaction> {
-    private final String who;      // customer
 
-    private final Date when;     // date
+    private final String who; // customer
 
-    private final double amount;   // amount
+    private final Date when; // date
+
+    private final double amount; // amount
 
     /**
      * Initializes a new transaction from the given arguments.
@@ -48,7 +49,7 @@ public class Transaction implements Comparable<Transaction> {
         this.who = who;
         this.when = when;
         if (amount == 0.0) {
-            this.amount = 0.0;  // to handle -0.0
+            this.amount = 0.0; // to handle -0.0
         } else {
             this.amount = amount;
         }
@@ -68,7 +69,7 @@ public class Transaction implements Comparable<Transaction> {
         when = new Date(a[1]);
         double value = Double.parseDouble(a[2]);
         if (value == 0.0) {
-            amount = 0.0;  // convert -0.0 0.0
+            amount = 0.0; // convert -0.0 0.0
         } else {
             amount = value;
         }
@@ -151,8 +152,7 @@ public class Transaction implements Comparable<Transaction> {
             return false;
         }
         Transaction that = (Transaction) other;
-        return (this.amount == that.amount) && (this.who.equals(that.who))
-                && (this.when.equals(that.when));
+        return (this.amount == that.amount) && (this.who.equals(that.who)) && (this.when.equals(that.when));
     }
 
     /**

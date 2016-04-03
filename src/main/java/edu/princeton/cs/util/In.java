@@ -61,19 +61,16 @@ public final class In {
     // assume language = English, country = US for consistency with System.out.
     private static final Locale LOCALE = Locale.US;
 
-    // the default token separator; we maintain the invariant that this value 
+    // the default token separator; we maintain the invariant that this value
     // is held by the scanner's delimiter between calls
-    private static final Pattern WHITESPACE_PATTERN
-            = Pattern.compile("\\p{javaWhitespace}+");
+    private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\p{javaWhitespace}+");
 
-    // makes whitespace characters significant 
-    private static final Pattern EMPTY_PATTERN
-            = Pattern.compile("");
+    // makes whitespace characters significant
+    private static final Pattern EMPTY_PATTERN = Pattern.compile("");
 
     // used to read the entire input. source:
     // http://weblogs.java.net/blog/pat/archive/2004/10/stupid_scanner_1.html
-    private static final Pattern EVERYTHING_PATTERN
-            = Pattern.compile("\\A");
+    private static final Pattern EVERYTHING_PATTERN = Pattern.compile("\\A");
 
     //// end: section (1 of 2) of code duplicated from In to StdIn.
 
@@ -258,8 +255,7 @@ public final class In {
     public char readChar() {
         scanner.useDelimiter(EMPTY_PATTERN);
         String ch = scanner.next();
-        assert ch.length() == 1 : "Internal (Std)In.readChar() error!"
-                + " Please contact the authors.";
+        assert ch.length() == 1 : "Internal (Std)In.readChar() error!" + " Please contact the authors.";
         scanner.useDelimiter(WHITESPACE_PATTERN);
         return ch.charAt(0);
     }
@@ -454,6 +450,7 @@ public final class In {
      * @return the integers in the file
      * @deprecated Replaced by <tt>new In(filename)</tt>.{@link #readAllInts()}.
      */
+    @Deprecated
     public static int[] readInts(String filename) {
         return new In(filename).readAllInts();
     }
@@ -466,6 +463,7 @@ public final class In {
      * @return the doubles in the file
      * @deprecated Replaced by <tt>new In(filename)</tt>.{@link #readAllDoubles()}.
      */
+    @Deprecated
     public static double[] readDoubles(String filename) {
         return new In(filename).readAllDoubles();
     }
@@ -478,6 +476,7 @@ public final class In {
      * @return the strings in the file
      * @deprecated Replaced by <tt>new In(filename)</tt>.{@link #readAllStrings()}.
      */
+    @Deprecated
     public static String[] readStrings(String filename) {
         return new In(filename).readAllStrings();
     }
@@ -489,6 +488,7 @@ public final class In {
      * @return the integers on standard input
      * @deprecated Replaced by {@link StdIn#readAllInts()}.
      */
+    @Deprecated
     public static int[] readInts() {
         return new In().readAllInts();
     }
@@ -500,6 +500,7 @@ public final class In {
      * @return the doubles on standard input
      * @deprecated Replaced by {@link StdIn#readAllDoubles()}.
      */
+    @Deprecated
     public static double[] readDoubles() {
         return new In().readAllDoubles();
     }
@@ -511,6 +512,7 @@ public final class In {
      * @return the strings on standard input
      * @deprecated Replaced by {@link StdIn#readAllStrings()}.
      */
+    @Deprecated
     public static String[] readStrings() {
         return new In().readAllStrings();
     }

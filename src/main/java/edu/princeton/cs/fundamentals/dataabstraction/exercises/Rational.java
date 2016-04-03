@@ -34,11 +34,12 @@ import edu.princeton.cs.util.StdOut;
  ******************************************************************************/
 
 public class Rational implements Comparable<Rational> {
+
     private static Rational zero = new Rational(0, 1);
 
-    private long num;   // the numerator
+    private long num; // the numerator
 
-    private long den;   // the denominator
+    private long den; // the denominator
 
     // create and initialize a new Rational object
     public Rational(long numerator, long denominator) {
@@ -137,17 +138,6 @@ public class Rational implements Comparable<Rational> {
         }
     }
 
-    // return lcm(|m|, |n|)
-    private static long lcm(long m, long n) {
-        if (m < 0) {
-            m = -m;
-        }
-        if (n < 0) {
-            n = -n;
-        }
-        return m * (n / gcd(m, n));    // parentheses important to avoid overflow
-    }
-
     // return this * that, staving off overflow as much as possible by cross-cancellation
     public Rational times(Rational that) {
 
@@ -173,9 +163,7 @@ public class Rational implements Comparable<Rational> {
         long g = gcd(this.den, that.den);
 
         // add cross-product terms for numerator
-        Rational s = new Rational((this.num / f) * (that.den / g)
-                + (that.num / f) * (this.den / g),
-                this.den * (that.den / g));
+        Rational s = new Rational((this.num / f) * (that.den / g) + (that.num / f) * (this.den / g), this.den * (that.den / g));
 
         // multiply back in
         s.num *= f;

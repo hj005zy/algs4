@@ -8,10 +8,10 @@
 
 package edu.princeton.cs.fundamentals.bagsqueuesstacks;
 
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdOut;
 
 /**
  * The <tt>ResizingArrayBag</tt> class represents a bag (or multiset) of
@@ -31,13 +31,15 @@ import java.util.NoSuchElementException;
  * @author Kevin Wayne
  */
 public class ResizingArrayBag<Item> implements Iterable<Item> {
-    private Item[] a;         // array of items
 
-    private int N = 0;        // number of elements on stack
+    private Item[] a; // array of items
+
+    private int N = 0; // number of elements on stack
 
     /**
      * Initializes an empty bag.
      */
+    @SuppressWarnings("unchecked")
     public ResizingArrayBag() {
         a = (Item[]) new Object[2];
     }
@@ -63,6 +65,7 @@ public class ResizingArrayBag<Item> implements Iterable<Item> {
     // resize the underlying array holding the elements
     private void resize(int capacity) {
         assert capacity >= N;
+        @SuppressWarnings("unchecked")
         Item[] temp = (Item[]) new Object[capacity];
         for (int i = 0; i < N; i++) {
             temp[i] = a[i];
@@ -77,9 +80,9 @@ public class ResizingArrayBag<Item> implements Iterable<Item> {
      */
     public void add(Item item) {
         if (N == a.length) {
-            resize(2 * a.length);    // double size of array if necessary
+            resize(2 * a.length); // double size of array if necessary
         }
-        a[N++] = item;                            // add item
+        a[N++] = item; // add item
     }
 
     /**
@@ -94,6 +97,7 @@ public class ResizingArrayBag<Item> implements Iterable<Item> {
 
     // an iterator, doesn't implement remove() since it's optional
     private class ArrayIterator implements Iterator<Item> {
+
         private int i = 0;
 
         @Override

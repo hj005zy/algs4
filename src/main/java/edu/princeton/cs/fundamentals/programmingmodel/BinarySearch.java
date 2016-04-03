@@ -24,11 +24,11 @@
 
 package edu.princeton.cs.fundamentals.programmingmodel;
 
+import java.util.Arrays;
+
 import edu.princeton.cs.util.In;
 import edu.princeton.cs.util.StdIn;
 import edu.princeton.cs.util.StdOut;
-
-import java.util.Arrays;
 
 /**
  * The <tt>BinarySearch</tt> class provides a static method for binary
@@ -84,6 +84,7 @@ public class BinarySearch {
      * @return index of key in array <tt>a</tt> if present; <tt>-1</tt> otherwise
      * @deprecated Replaced by {@link #indexOf(int[], int)}.
      */
+    @Deprecated
     public static int rank(int key, int[] a) {
         return indexOf(a, key);
     }

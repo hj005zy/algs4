@@ -12,11 +12,11 @@
 
 package edu.princeton.cs.fundamentals.bagsqueuesstacks;
 
-import edu.princeton.cs.util.StdIn;
-import edu.princeton.cs.util.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.util.StdIn;
+import edu.princeton.cs.util.StdOut;
 
 /**
  * The <tt>ResizingArrayQueue</tt> class represents a first-in-first-out (FIFO)
@@ -39,17 +39,19 @@ import java.util.NoSuchElementException;
  * @author Kevin Wayne
  */
 public class ResizingArrayQueue<Item> implements Iterable<Item> {
-    private Item[] q;            // queue elements
 
-    private int N = 0;           // number of elements on queue
+    private Item[] q; // queue elements
 
-    private int first = 0;       // index of first element of queue
+    private int N = 0; // number of elements on queue
 
-    private int last = 0;       // index of next available slot
+    private int first = 0; // index of first element of queue
+
+    private int last = 0; // index of next available slot
 
     /**
      * Initializes an empty queue.
      */
+    @SuppressWarnings("unchecked")
     public ResizingArrayQueue() {
         // cast needed since no generic array creation in Java
         q = (Item[]) new Object[2];
@@ -76,6 +78,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
     // resize the underlying array
     private void resize(int max) {
         assert max >= N;
+        @SuppressWarnings("unchecked")
         Item[] temp = (Item[]) new Object[max];
         for (int i = 0; i < N; i++) {
             temp[i] = q[(first + i) % q.length];
@@ -93,11 +96,11 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
     public void enqueue(Item item) {
         // double size of array if necessary and recopy to front of array
         if (N == q.length) {
-            resize(2 * q.length);   // double size of array if necessary
+            resize(2 * q.length); // double size of array if necessary
         }
-        q[last++] = item;                        // add item
+        q[last++] = item; // add item
         if (last == q.length) {
-            last = 0;          // wrap-around
+            last = 0; // wrap-around
         }
         N++;
     }
@@ -113,11 +116,11 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
             throw new NoSuchElementException("Queue underflow");
         }
         Item item = q[first];
-        q[first] = null;                            // to avoid loitering
+        q[first] = null; // to avoid loitering
         N--;
         first++;
         if (first == q.length) {
-            first = 0;           // wrap-around
+            first = 0; // wrap-around
         }
         // shrink size of array if necessary
         if (N > 0 && N == q.length / 4) {
@@ -151,6 +154,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     // an iterator, doesn't implement remove() since it's optional
     private class ArrayIterator implements Iterator<Item> {
+
         private int i = 0;
 
         @Override

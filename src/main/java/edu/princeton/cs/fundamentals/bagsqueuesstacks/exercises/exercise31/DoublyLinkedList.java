@@ -3,6 +3,7 @@ package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise31;
 public class DoublyLinkedList<Item> {
 
     private static class DoubleNode<Item> {
+
         private Item item;
 
         private DoubleNode<Item> prev;

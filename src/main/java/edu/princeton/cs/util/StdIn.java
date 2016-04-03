@@ -146,8 +146,7 @@ public final class StdIn {
     public static char readChar() {
         scanner.useDelimiter(EMPTY_PATTERN);
         String ch = scanner.next();
-        assert ch.length() == 1 : "Internal (Std)In.readChar() error!"
-                + " Please contact the authors.";
+        assert ch.length() == 1 : "Internal (Std)In.readChar() error!" + " Please contact the authors.";
         scanner.useDelimiter(WHITESPACE_PATTERN);
         return ch.charAt(0);
     }
@@ -354,6 +353,7 @@ public final class StdIn {
      * @throws InputMismatchException if any token cannot be parsed as an <tt>int</tt>
      * @deprecated Replaced by {@link #readAllInts()}.
      */
+    @Deprecated
     public static int[] readInts() {
         return readAllInts();
     }
@@ -366,6 +366,7 @@ public final class StdIn {
      * @throws InputMismatchException if any token cannot be parsed as a <tt>double</tt>
      * @deprecated Replaced by {@link #readAllDoubles()}.
      */
+    @Deprecated
     public static double[] readDoubles() {
         return readAllDoubles();
     }
@@ -376,6 +377,7 @@ public final class StdIn {
      * @return all remaining tokens, as an array of strings
      * @deprecated Replaced by {@link #readAllStrings()}.
      */
+    @Deprecated
     public static String[] readStrings() {
         return readAllStrings();
     }

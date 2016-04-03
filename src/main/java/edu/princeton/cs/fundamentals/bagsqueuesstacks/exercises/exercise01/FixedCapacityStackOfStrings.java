@@ -1,5 +1,8 @@
 package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise01;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /******************************************************************************
  * Compilation:  javac FixedCapacityStackOfStrings.java
  * Execution:    java FixedCapacityStackOfStrings
@@ -20,13 +23,11 @@ package edu.princeton.cs.fundamentals.bagsqueuesstacks.exercises.exercise01;
 import edu.princeton.cs.util.StdIn;
 import edu.princeton.cs.util.StdOut;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 public class FixedCapacityStackOfStrings implements Iterable<String> {
-    private String[] a;  // holds the items
 
-    private int N;       // number of items in stack
+    private String[] a; // holds the items
+
+    private int N; // number of items in stack
 
     // create an empty stack with given capacity
     public FixedCapacityStackOfStrings(int capacity) {
@@ -60,6 +61,7 @@ public class FixedCapacityStackOfStrings implements Iterable<String> {
     }
 
     public class ReverseArrayIterator implements Iterator<String> {
+
         private int i = N - 1;
 
         @Override
